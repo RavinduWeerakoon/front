@@ -1,5 +1,6 @@
 import React from 'react';
 import Bars from './Components/BarChart';
+import EmotionScore from './Components/EmotionScore';
 
 const Profile = () => {
   return (
@@ -13,7 +14,7 @@ const Profile = () => {
       {/* First row, spans 1 column */}
       <div className="bg-white p-4 shadow rounded">
         <h2 className="text-xl font-bold mb-2">Sidebar</h2>
-        <p>This section spans one column.</p>
+        <EmotionScore score={"angry"}/>
       </div>
       {/* Second row, spans 1 column */}
       <div className="bg-white p-4 shadow rounded">
