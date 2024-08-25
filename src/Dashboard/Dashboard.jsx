@@ -6,14 +6,14 @@ import Sidebar from './Sidebar';
 
 const Dashboard = () => {
   return (
-    <main style={{ flexGrow: 1, padding: '20px' }}>
+    <main>
     <Sidebar />
     <div style={{ display: 'flex' }}>  
     <Routes>
     
             <Route path="/" element={<h1>Home</h1>} />
             <Route path="/settings" element={<h2>Settings</h2>} />
-            <Route path="/profile" element={<h1>Profile</h1>} />
+            <Route path="/profile" element={<Profile />}/>
           
     </Routes>
     </div>
