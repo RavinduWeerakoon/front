@@ -5,7 +5,7 @@ import Register from './components/auth/Register.jsx'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import './App.css'
-import Dashboard from './Dashboard/Dashboard'
+import Dashboard from 'src/Dashboard/Dashboard'
 function App() {
   return (
     <BrowserRouter>
