@@ -17,6 +17,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import {Link, Routes, Route} from 'react-router-dom'
+import Users from './Components/Users';
 
 import Sidebar from './Components/Sidebar';
 const drawerWidth = 240;
@@ -118,7 +119,7 @@ function ResponsiveDrawer(props) {
             <Routes>
               <Route path="/" element={<div>Home</div>} />
               <Route path="profile" element={<div>About</div>} />
-              <Route path="users" element={<div>Dashboard</div>} />
+              <Route path="users" element={<Users/>} />
             </Routes>
           
       </Box>
