@@ -2,6 +2,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from './components/auth/Login.Jsx'
 import Register from './components/auth/Register.jsx'
+import RegisterDoc from './components/auth/RegisterDoc.jsx';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
@@ -21,6 +22,7 @@ const lightTheme = createTheme({
     background: {
       default: '#f5f5f5', // Background color
       paper: '#ffffff', // Paper color
+      
     },
     text: {
       primary: '#333333', // Primary text color
@@ -73,6 +75,7 @@ function App() {
         <Route path="/logout" element={<Logout />} />
         <Route path="/dashboard/*" element={<Dashboard />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/registerDoc" element={<RegisterDoc />} />
       </Routes>
       </ThemeProvider>
     </BrowserRouter>
