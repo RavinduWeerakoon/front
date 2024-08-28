@@ -7,7 +7,7 @@ import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 // import viteLogo from '/vite.svg'
 import './App.css'
 import Dashboard from 'src/Dashboard/Dashboard'
-
+import JournalEntryPage from './components/basic/JournalEntryPage.jsx';
 
 const lightTheme = createTheme({
   palette: {
@@ -66,6 +66,7 @@ function App() {
     <BrowserRouter>
        <ThemeProvider theme={lightTheme}>
       <Routes>
+        <Route path="/" element={<JournalEntryPage />} />
         <Route path="/login" element={<Login/>} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/dashboard/*" element={<Dashboard />} />
