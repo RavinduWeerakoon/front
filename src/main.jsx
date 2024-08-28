@@ -7,9 +7,11 @@ import './index.css'
 
 
 createRoot(document.getElementById('root')).render(
-  <Provider store={store}>
   <StrictMode>
+  <Provider store={store}>
+  
     <App />
-  </StrictMode>
+
   </Provider>
+  </StrictMode>
 )

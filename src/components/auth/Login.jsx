@@ -1,5 +1,5 @@
 import {useState} from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { signIn, getUserRole } from "../../services/authService";
 import { Button, TextField, Grid, Typography } from "@mui/material";
 import { loginSuccess, loginFailure } from "../../store/authSlice";
@@ -11,25 +11,42 @@ import { loginSuccess, loginFailure } from "../../store/authSlice";
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState(null);
+    //const [status, setStatus] = useState("idle");
     const dispatch = useDispatch();
 
-    const error = useSelector((state) => state.auth.error);
+    // const error = useSelector((state) => state.auth.error);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!email || !password) {
+            setError('Email and password are required');
+            return;
+        }
         dispatch({ type: "auth/login/pending" });
+        console.log(success)
         try {
-            const user = await signIn(email, password);
+            const response = await signIn(email, password);
+            if (response.success === false) {
+                setError(response.message);
+            }
+            else{
+                const user = response;
             if (user) {
                 const email = user.email;
                 const uid = user.uid;
                 const displayName = user.displayName;
+                
 
                 const role = await getUserRole(user.uid);
                 console.log(email, uid, displayName);
                 console.log(role);
-                dispatch(loginSuccess({ email,uid, displayName, role }));
+                dispatch(loginSuccess({email,uid, displayName, role }));
+                setSuccess(true);
+                console.log("login success");
             }
+        }
         } catch (error) {
             dispatch(loginFailure(error.message));
             console.log(error);
@@ -64,7 +81,7 @@ const Login = () => {
                 </Grid>
             </form>
             </Grid>
-            {loginSuccess && (
+            {  success && (
             <Grid item>
             <Typography variant="body1" color="primary">Login successful!</Typography>
         </Grid>)
