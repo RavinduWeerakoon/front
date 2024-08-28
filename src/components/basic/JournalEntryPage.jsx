@@ -5,12 +5,6 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import MenuItem from '@mui/material/MenuItem';
 
-const emotions = [
-  { value: 'joy', label: 'Joy' },
-  { value: 'sadness', label: 'Sadness' },
-  { value: 'anger', label: 'Anger' },
-  { value: 'calm', label: 'Calm' },
-];
 
 const JournalEntryPage = () => {
   const [date, setDate] = useState('');
