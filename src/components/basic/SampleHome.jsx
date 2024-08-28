@@ -15,8 +15,10 @@ import JournalEntry from './ListEntry';
 
 function NewButton() {
   return (
-
+    
     <Button
+      component={Link}
+      to="dashboard/new"
       variant="contained"
       startIcon={<AddIcon />}
       sx={{

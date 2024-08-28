@@ -69,9 +69,7 @@ const JournalEntryPage = () => {
         flexDirection: 'column',
         alignItems: 'center',
         p: 3,
-        maxWidth: 600,
         margin: '0 auto',
-        backgroundColor: '#f9f9f9',
         borderRadius: 2,
         boxShadow: 3,
       }}

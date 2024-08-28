@@ -13,6 +13,7 @@ import Box from '@mui/material/Box';
 import GroupIcon from '@mui/icons-material/Group';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import HomeIcon from '@mui/icons-material/Home';
+import AddIcon from '@mui/icons-material/Add';
 
 const links = [
     {
@@ -29,7 +30,12 @@ const links = [
         name: 'Users',
         icon: GroupIcon,
         path: "users"
-    },]
+    },
+    {
+        name: 'New',
+        icon: AddIcon,
+        path: "new"
+    }]
 
 
 const Sidebar = (

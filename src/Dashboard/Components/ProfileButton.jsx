@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/icons-material/MenuItem';
+import MenuItem from '@mui/material/MenuItem';
 import  Typography  from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import { Settings, Logout } from '@mui/icons-material';
+import Avatar from '@mui/material/Avatar';
+
+import SettingsIcon from '@mui/icons-material/Settings';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 function ProfileButton() {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -27,6 +30,7 @@ function ProfileButton() {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
+        sx={{ mr: 4 }}
         PaperProps={{
           elevation: 0,
           sx: {
@@ -60,13 +64,13 @@ function ProfileButton() {
           <Typography variant="subtitle1">John Doe</Typography>
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <Settings fontSize="small" />
+          <SettingsIcon fontSize="small" />
           <Typography variant="inherit" style={{ marginLeft: 10 }}>
             Settings
           </Typography>
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <Logout fontSize="small" />
+          <LogoutIcon fontSize="small" />
           <Typography variant="inherit" style={{ marginLeft: 10 }}>
             Logout
           </Typography>

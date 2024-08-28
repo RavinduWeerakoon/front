@@ -24,7 +24,8 @@ import { useTheme } from '@mui/material/styles';
 import SampleHome from '../components/basic/sampleHome';
 import Sidebar from './Components/Sidebar';
 import ProfileDetails from './Components/ProfileDetails';
-
+import JournalEntryPage from '../components/basic/JournalEntryPage';
+import ProfileButton from './Components/ProfileButton';
 const drawerWidth = 240;
 
 function ResponsiveDrawer(props) {
@@ -66,8 +67,10 @@ function ResponsiveDrawer(props) {
         backgroundColor: '#fff',
         color: '#333333',
         boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
+        flexDirection:"row",
+        
         alignItems: isLargeScreen ? 'center' : 'flex-start',
-        justifyContent: isLargeScreen ? 'center' : 'flex-start',
+        justifyContent: isLargeScreen ? 'space-between' : 'space-between',
       }}
     >
         <Toolbar>
@@ -84,6 +87,8 @@ function ResponsiveDrawer(props) {
             EmoAI
           </Typography>
         </Toolbar>
+
+        <ProfileButton/>
       </AppBar>
       <Box
         component="nav"
@@ -130,6 +135,7 @@ function ResponsiveDrawer(props) {
               <Route path="profile" element={<div>About</div>} />
               <Route path="users" element={<Users/>} />
               <Route path="home" element={<SampleHome/>} />
+              <Route path="new" element={<JournalEntryPage/>} />
             </Routes>
           
       </Box>
