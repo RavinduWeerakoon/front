@@ -54,8 +54,8 @@ const Login = () => {
     }
 
     return (
-        <Grid container justifyContent="center" alignItems="center" style={{ height: "100vh", backgroundColor:"f0f0f0" }  }>
-            <Grid item xs={12} sm={8} md={4} style={{backgroundColor: "f0f0f0"}}>
+        <Grid container justifyContent="center" alignItems="center" style={{ height: "100vh", backgroundColor:"#ffff"}  }>
+            <Grid item xs={12} sm={8} md={4} style={{backgroundColor: "#EBF5FB",  border: "5px solid #ccc", padding: "40px"}}>
             <Grid container direction="column" alignItems="center" justifyContent="flex-start" spacing={2} style={{ height: "100%" ,backgroundColor:"f0f0f0"}}>
             <Grid item>
             <Typography variant="h4">Login</Typography>

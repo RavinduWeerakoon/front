@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import EmotionPieChart from './Charts/EmotionPieChart';
+import EmotionLineChart from './Charts/EmotionLineChart';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: '#fff',
@@ -18,6 +19,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function ProfileDetails() {
   return (
+    <>
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
         <Grid item xs={8}>
@@ -34,5 +36,18 @@ export default function ProfileDetails() {
         </Grid>
       </Grid>
     </Box>
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={2}>
+        <Grid item xs={8}>
+         {<EmotionLineChart/>}
+        </Grid>
+       
+       
+        <Grid item xs={8}>
+          <Item>xs=8</Item>
+        </Grid>
+      </Grid>
+    </Box>
+    </>
   );
 }
