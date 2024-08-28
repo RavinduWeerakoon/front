@@ -12,15 +12,21 @@ import Box from '@mui/material/Box';
 
 import GroupIcon from '@mui/icons-material/Group';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import HomeIcon from '@mui/icons-material/Home';
 
 const links = [
+    {
+        name:"Home",
+        icon: HomeIcon,
+        path: "home"
+    },
     {
         name: 'Dashboard',
         icon: DashboardIcon,
         path: ""
     },
     {
-        name: 'Group',
+        name: 'Users',
         icon: GroupIcon,
         path: "users"
     },]
