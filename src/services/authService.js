@@ -3,15 +3,15 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut , G
 import {doc, setDoc, getDoc} from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 
-export const signUp = async (email, password,name, role = 'user') => {
+export const signUp = async (email, password,displayName, role = 'user') => {
     try {
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password, displayName);
         // Signed in
         const user = userCredential.user;
         console.log(user);
         await setDoc(doc(db, "users", user.uid), {
             email: user.email,
-            name: name,
+            displayName: displayName,
             role: role
         });
         return user;
