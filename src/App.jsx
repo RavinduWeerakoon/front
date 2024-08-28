@@ -66,8 +66,10 @@ function App() {
     <BrowserRouter>
        <ThemeProvider theme={lightTheme}>
       <Routes>
+
         <Route path="/" element={<JournalEntryPage />} />
         <Route path="/login" element={<Login/>} />
+
         <Route path="/logout" element={<Logout />} />
         <Route path="/dashboard/*" element={<Dashboard />} />
         <Route path="/register" element={<Register />} />
