@@ -20,6 +20,7 @@ import {Link, Routes, Route} from 'react-router-dom'
 import Users from './Components/Users';
 
 import Sidebar from './Components/Sidebar';
+import ProfileDetails from './Components/ProfileDetails';
 const drawerWidth = 240;
 
 function ResponsiveDrawer(props) {
@@ -112,12 +113,13 @@ function ResponsiveDrawer(props) {
       </Box>
       <Box
         component="main"
+        flexDirection='column'
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
         <Toolbar />
 
             <Routes>
-              <Route path="/" element={<div>Home</div>} />
+              <Route path="/" element={<ProfileDetails/>} />
               <Route path="profile" element={<div>About</div>} />
               <Route path="users" element={<Users/>} />
             </Routes>
