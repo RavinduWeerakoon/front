@@ -3,7 +3,7 @@ import Container from '@mui/material/Container';
 import Typography  from '@mui/material/Typography';
 import  Grid  from '@mui/material/Grid';
 
-function JournalEntry() {
+function JournalEntry({date, text}) {
   return (
     <Grid
       sx={{ textAlign: 'left', mt: 2 }}
@@ -27,7 +27,7 @@ function JournalEntry() {
           fontWeight: 'bold',
         }}
       >
-        August 28, 2024 at 1:15 PM
+        {date}
       </Typography>
       <Typography
         variant="body2"
@@ -37,7 +37,7 @@ function JournalEntry() {
           marginTop: '8px',
         }}
       >
-        This is the First day that I’m writing a journal
+        {text}
       </Typography>
     </Grid>
   );

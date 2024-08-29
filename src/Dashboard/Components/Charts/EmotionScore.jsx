@@ -1,34 +1,28 @@
-import React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
+import * as React from 'react';
+import { Gauge, gaugeClasses } from '@mui/x-charts/Gauge';
 
-function EmotionScore({ score }) {
-  const isPositive = score > 50;
-  const cardStyle = {
-    backgroundColor: isPositive ? 'lightgreen' : 'red',
-    color: '#083347',
-    borderRadius: '10px',
-    padding: '1rem',
-    textAlign: 'center',
-    margin: '1rem',
-  };
+const settings = {
+  width: 200,
+  height: 200,
+  value: 60,
+};
 
+export default function EmotionScore(score) {
   return (
-    <Card style={cardStyle}>
-      <CardContent>
-        <Typography variant="h5" component="div">
-          Emotion Score
-        </Typography>
-        <Typography variant="h4" component="div">
-          {score}
-        </Typography>
-        <Typography variant="body2">
-          {isPositive ? 'Positive' : 'Negative'}
-        </Typography>
-      </CardContent>
-    </Card>
+    <Gauge
+      {...settings}
+      cornerRadius={"50%"}
+      sx={(theme) => ({
+        [`& .${gaugeClasses.valueText}`]: {
+          fontSize: 40,
+        },
+        [`& .${gaugeClasses.valueArc}`]: {
+          fill: '#52b202',
+        },
+        [`& .${gaugeClasses.referenceArc}`]: {
+          fill: theme.palette.text.disabled,
+        },
+      })}
+    />
   );
 }
-
-export default EmotionScore;
