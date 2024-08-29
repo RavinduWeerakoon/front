@@ -11,6 +11,7 @@ import Stack from '@mui/material/Stack';
 import WeeklyEmotions from './Charts/WeeklyEmotionScore';
 import EmototionPieChart from './Charts/EmotionPieChart';
 import EmotionLineChart from './Charts/EmotionLineChart';
+import EmotionScore from './Charts/EmotionScore';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: '#fff',
@@ -26,19 +27,16 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function FullWidthGrid() {
   return (
 
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1 ,m:2 }}>
       <Grid container spacing={2}>
         <Grid item xs={6} md={8}>
         <Stack spacing={2} direction="row">
         <Card sx={{maxWidth: 40+"%" }}>
           <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Lizard
+            Emotion Score
           </Typography>
-          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
+          <EmotionScore score={80} />
         </CardContent>
       </Card>
 
@@ -107,6 +105,10 @@ export default function FullWidthGrid() {
       </Grid>
 
       </Box>
+
+      
+      
     </Box>
+    
   );
 }
