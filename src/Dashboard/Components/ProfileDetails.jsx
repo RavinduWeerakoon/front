@@ -3,18 +3,15 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-
-
-import EmotionPieChart from './Charts/EmotionPieChart';
-import EmotionScore from './Charts/EmotionScore';
-import DetailCards from './Charts/DetailCards';
-import WeeklyEmotionScore from './Charts/WeeklyEmotionScore';
-import  Typography  from '@mui/material/Typography';
-import PostTimeline from './Charts/PostTimeLine';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from "@mui/material/Typography";
+import Stack from '@mui/material/Stack';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: '#fff',
   ...theme.typography.body2,
+  padding: theme.spacing(1),
   textAlign: 'center',
   color: theme.palette.text.secondary,
   ...theme.applyStyles('dark', {
@@ -22,30 +19,89 @@ const Item = styled(Paper)(({ theme }) => ({
   }),
 }));
 
-export default function ProfileDetails() {
+export default function FullWidthGrid() {
   return (
-
-    <Box sx={{ flexGrow: 1 }}>
-          <Typography variant="h3" component="h2" style={{ textAlign: 'left' }}>
-            Patient Details
+    <Box sx={{ flexGrow: 1, m:2}}>
+      <Grid container spacing={2}>
+        <Grid item xs={6} md={8}>
+        <Stack spacing={2} direction="row">
+        <Card sx={{maxWidth: 40+"%" }}>
+          <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            Lizard
           </Typography>
-      {/* <DetailCards/> */}
-      <Grid container spacing={1}>
-        <Grid item lg={4} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <Box sx={{width:"100%", height:"400"}}>
-            <EmotionPieChart/>
-         </Box>
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+            Lizards are a widespread group of squamate reptiles, with over 6,000
+            species, ranging across all continents except Antarctica
+          </Typography>
+        </CardContent>
+      </Card>
+
+      <Card sx={{ maxWidth: 40+"%"}}>
+
+          <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            Lizard
+          </Typography>
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+            Lizards are a widespread group of squamate reptiles, with over 6,000
+            species, ranging across all continents except Antarctica
+          </Typography>
+        </CardContent>
+      </Card>
+      </Stack>
+
+
         </Grid>
-        <Grid item xs={8}>
-          <WeeklyEmotionScore/>
+        <Grid item xs={6} md={4}>
+            <Stack spacing={2}>
+              
+              <Card sx={{ maxWidth: 100+"%" }}>
+              <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                Lizard
+              </Typography>
+              </CardContent>
+              </Card>
+
+              <Card sx={{ maxWidth: 100+"%" }}>
+              <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                Lizard
+              </Typography>
+              </CardContent>
+              </Card>
+              
+              
+        
+          </Stack>
         </Grid>
-        <Grid item xs={4}>
-          <PostTimeline/>
-        </Grid>
-        <Grid item xs={8}>
-          <Item>xs=8</Item>
-        </Grid>
+
       </Grid>
+
+      <Box height={20}>
+      
+      <Grid container spacing={2}>
+        <Grid item xs={6} md={8}>
+        <Card sx={{height:60+"vh"}}>
+        <CardContent>
+
+        </CardContent>
+        </Card>
+
+        </Grid>
+        <Grid item xs={6} md={4}>
+
+        <Card sx={{height:60+"vh"}}>
+        <CardContent>
+
+        </CardContent>
+        </Card>
+        </Grid>
+
+      </Grid>
+
+      </Box>
     </Box>
   );
 }
