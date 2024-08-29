@@ -8,6 +8,9 @@ import CardContent from '@mui/material/CardContent';
 import Typography from "@mui/material/Typography";
 import Stack from '@mui/material/Stack';
 
+import WeeklyEmotions from './Charts/WeeklyEmotionScore';
+import EmototionPieChart from './Charts/EmotionPieChart';
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: '#fff',
   ...theme.typography.body2,
@@ -84,8 +87,8 @@ export default function FullWidthGrid() {
       <Grid container spacing={2}>
         <Grid item xs={6} md={8}>
         <Card sx={{height:60+"vh"}}>
-        <CardContent>
-
+        <CardContent sx={{height:"100%"}}>
+          <WeeklyEmotions />
         </CardContent>
         </Card>
 
@@ -93,8 +96,8 @@ export default function FullWidthGrid() {
         <Grid item xs={6} md={4}>
 
         <Card sx={{height:60+"vh"}}>
-        <CardContent>
-
+        <CardContent sx={{height:"100%"}}>
+          <EmototionPieChart />
         </CardContent>
         </Card>
         </Grid>

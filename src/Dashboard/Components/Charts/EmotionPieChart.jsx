@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { PieChart } from '@mui/x-charts/PieChart';
-import Paper  from '@mui/material/Paper';
 // Dummy data
 const emotionData = [
   { date: "2024-08-01", text: "I felt overwhelmed at work today, so much to do and not enough time.", emotion: "anger" },
@@ -33,7 +32,6 @@ export default function EmotionPieChart() {
   const pieData = countEmotions(emotionData);
 
   return (
-    <Paper style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
     <PieChart
       series={[
         {
@@ -51,6 +49,5 @@ export default function EmotionPieChart() {
         },
       }}
     />
-    </Paper>
   );
 }
