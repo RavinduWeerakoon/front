@@ -5,11 +5,11 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import EmotionPieChart from './Charts/EmotionPieChart';
 import EmotionLineChart from './Charts/EmotionLineChart';
+import EmotionScore from './Charts/EmotionScore';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: '#fff',
   ...theme.typography.body2,
-  padding: theme.spacing(1),
   textAlign: 'center',
   color: theme.palette.text.secondary,
   ...theme.applyStyles('dark', {
@@ -23,10 +23,10 @@ export default function ProfileDetails() {
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
         <Grid item xs={8}>
-         {<EmotionPieChart/>}
+         <EmotionPieChart/>
         </Grid>
         <Grid item xs={4}>
-          <Item>xs=4</Item>
+          <EmotionScore score={70}/>
         </Grid>
         <Grid item xs={4}>
           <Item>xs=4</Item>

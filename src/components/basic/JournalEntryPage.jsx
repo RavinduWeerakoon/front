@@ -4,17 +4,60 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import MenuItem from '@mui/material/MenuItem';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+import { db } from '../../../firebaseConfig';
+import { collection, addDoc } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
 
+const emotions = [
+  { value: 'joy', label: 'Joy' },
+  { value: 'sadness', label: 'Sadness' },
+  { value: 'anger', label: 'Anger' },
+  { value: 'love', label: 'Love' },
+];
 
 const JournalEntryPage = () => {
   const [date, setDate] = useState('');
   const [text, setText] = useState('');
   const [emotion, setEmotion] = useState('');
+  const [open, setOpen] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle form submission logic here
-    console.log({ date, text, emotion });
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    if (user) {
+      try {
+        await addDoc(collection(db, 'journalEntries'), {
+          userId: user.uid,
+          date,
+          text,
+          emotion,
+          
+        });
+        console.log('Journal entry added successfully');
+        // Clear the form
+        setDate('');
+        setText('');
+        setEmotion('');
+        // Show success notification
+        setOpen(true);
+      } catch (e) {
+        console.error('Error adding document: ', e);
+      }
+    } else {
+      console.error('No user is signed in');
+    }
+  };
+
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
   };
 
   return (
@@ -26,8 +69,9 @@ const JournalEntryPage = () => {
         flexDirection: 'column',
         alignItems: 'center',
         p: 3,
-        maxWidth: 600,
         margin: '0 auto',
+        borderRadius: 2,
+        boxShadow: 3,
       }}
     >
       <Typography variant="h4" component="div" sx={{ mb: 2 }}>
@@ -53,10 +97,28 @@ const JournalEntryPage = () => {
         fullWidth
         sx={{ mb: 2 }}
       />
-
+      <TextField
+        label="Emotion"
+        select
+        value={emotion}
+        onChange={(e) => setEmotion(e.target.value)}
+        fullWidth
+        sx={{ mb: 2 }}
+      >
+        {emotions.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+      </TextField>
       <Button type="submit" variant="contained" color="primary">
         Submit
       </Button>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+          Emotion added successfully!
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };

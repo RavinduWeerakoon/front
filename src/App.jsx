@@ -2,13 +2,14 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from './components/auth/Login.Jsx'
 import Register from './components/auth/Register.jsx'
-import RegisterDoc from './components/auth/RegisterDoc.jsx';
+
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import './App.css'
 import Dashboard from 'src/Dashboard/Dashboard'
 import JournalEntryPage from './components/basic/JournalEntryPage.jsx';
+import SampleHome from './components/basic/sampleHome.jsx';
 
 const lightTheme = createTheme({
   palette: {
@@ -20,7 +21,7 @@ const lightTheme = createTheme({
       main: '#ff4081', // Secondary color
     },
     background: {
-      default: '#f5f5f5', // Background color
+      default: '#EEF5F7', // Background color
       paper: '#ffffff', // Paper color
       
     },
@@ -75,7 +76,8 @@ function App() {
         <Route path="/logout" element={<Logout />} />
         <Route path="/dashboard/*" element={<Dashboard />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/registerDoc" element={<RegisterDoc />} />
+        <Route path='/sample' element={<SampleHome/>}/>
+
       </Routes>
       </ThemeProvider>
     </BrowserRouter>
