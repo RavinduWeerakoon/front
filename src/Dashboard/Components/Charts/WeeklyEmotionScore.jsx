@@ -3,16 +3,16 @@ import { BarChart } from '@mui/x-charts/BarChart';
 import Typography  from '@mui/material/Typography';
 
 
-const uData = [4000, 3000, 2000, 2780, 1890, 2390, 3490];
-const pData = [2400, 1398, 9800, 3908, 4800, 3800, 4300];
+const uData = [40, 30, 20, 27.8, 18.9, 23.9, 34.9];
+const pData = [24, 13.98, 98, 39.08, 48, 38, 43];
 const xLabels = [
-  'Page A',
-  'Page B',
-  'Page C',
-  'Page D',
-  'Page E',
-  'Page F',
-  'Page G',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+  'Sunday',
 ];
 
 export default function WeeklyEmotions() {
@@ -23,8 +23,8 @@ export default function WeeklyEmotions() {
     <BarChart
 
       series={[
-        { data: pData, label: 'pv', id: 'pvId' },
-        { data: uData, label: 'uv', id: 'uvId' },
+        { data: pData, label: 'This week', id: 'pvId' },
+        { data: uData, label: 'LastWeek', id: 'uvId' },
       ]}
       xAxis={[{ data: xLabels, scaleType: 'band' }]}
     />

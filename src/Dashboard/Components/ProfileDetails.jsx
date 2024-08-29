@@ -34,7 +34,13 @@ export default function FullWidthGrid() {
         <Card sx={{maxWidth: 40+"%" }}>
           <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Emotion Score
+
+          Mood Insights
+          </Typography>
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+          This section provides a quick overview of your dominant emotions detected from the past week's journal entries, 
+          helping you reflect on your emotional journey.
+
           </Typography>
           <EmotionScore score={80} />
         </CardContent>
@@ -44,11 +50,11 @@ export default function FullWidthGrid() {
 
           <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Lizard
+          Daily Highlights
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+          Here, you'll find key emotional moments from your daily journal entries.
+           It's a snapshot of the emotional highs and lows throughout your week.
           </Typography>
         </CardContent>
       </Card>
@@ -62,7 +68,7 @@ export default function FullWidthGrid() {
               <Card sx={{ maxWidth: 100+"%" }}>
               <CardContent>
               <Typography gutterBottom variant="h5" component="div">
-                Lizard
+                LiMonthly Emotion Distributionzard
               </Typography>
               </CardContent>
               </Card>
@@ -70,7 +76,7 @@ export default function FullWidthGrid() {
               <Card sx={{ maxWidth: 100+"%" }}>
               <CardContent>
               <Typography gutterBottom variant="h5" component="div">
-                Lizard
+              Emotion Pie Chart
               </Typography>
               </CardContent>
               </Card>
