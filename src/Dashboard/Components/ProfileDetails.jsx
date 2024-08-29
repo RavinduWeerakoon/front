@@ -82,7 +82,7 @@ export default function FullWidthGrid() {
 
       </Grid>
 
-      <Box height={20}>
+      <Box height={20} sx={{marginTop:3,}}>
       
       <Grid container spacing={2}>
         <Grid item xs={6} md={8}>
