@@ -10,6 +10,7 @@ import './App.css'
 import Dashboard from 'src/Dashboard/Dashboard'
 import JournalEntryPage from './components/basic/JournalEntryPage.jsx';
 import SampleHome from './components/basic/sampleHome.jsx';
+import RegisterDoc from './components/auth/RegisterDoc.jsx';
 
 const lightTheme = createTheme({
   palette: {
@@ -77,6 +78,7 @@ function App() {
         <Route path="/dashboard/*" element={<Dashboard />} />
         <Route path="/register" element={<Register />} />
         <Route path='/sample' element={<SampleHome/>}/>
+        <Route path='/registerdoc' element={<RegisterDoc/>}/>
 
       </Routes>
       </ThemeProvider>

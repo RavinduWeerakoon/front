@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { signIn, getUserRole } from "../../services/authService";
 import { Button, TextField, Grid, Typography } from "@mui/material";
 import { loginSuccess, loginFailure } from "../../store/authSlice";
+import { Link } from "react-router-dom";
 
 
 
@@ -86,6 +87,10 @@ const Login = () => {
             <Typography variant="body1" color="primary">Login successful!</Typography>
         </Grid>)
             }
+            <Grid item>
+            <Button component={Link} to="/register" variant="contained">Create an Acccount</Button>
+
+            </Grid>
         
         </Grid>
         </Grid>

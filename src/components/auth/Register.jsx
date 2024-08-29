@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { signUp } from '../../services/authService';
 import {Button, TextField, Grid, Typography} from "@mui/material";
+import { Link } from "react-router-dom";
 const Register = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -40,7 +41,9 @@ const Register = () => {
                 
                 <Button type="submit" variant="contained">Register</Button>
             </Grid>
-            
+            <Grid item>
+                <Button variant="contained" component={Link} to="/login">Already Have an Account</Button>
+            </Grid>
 
             </Grid>
             </form>
