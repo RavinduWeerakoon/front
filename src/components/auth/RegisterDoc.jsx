@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { signUp } from '../../services/authService';
 import {Button, TextField, Grid, Typography} from "@mui/material";
-import { Link } from "react-router-dom";
-import {Dialog} from "@mui/material";
-const Register = () => {
+const RegisterDoc = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
@@ -12,7 +10,7 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const user = await signUp(email, password, name, 'user');
+            const user = await signUp(email, password, name, 'psychologist');
             console.log(user);
         } catch (error) {
             console.log(error);
@@ -20,12 +18,11 @@ const Register = () => {
     }
 
     return (
-        <Dialog open={true}>
         <Grid container justifyContent="center" alignItems="center" style={{ height: "100vh", backgroundColor:"f0f0f0" } }>
             <Grid item xs={12} sm={8} md={4} style={{backgroundColor: "f0f0f0"}}>
             <Grid container direction="column" alignItems="center" justifyContent="flex-start" spacing={2} style={{ height: "100%" ,backgroundColor:"f0f0f0"}}>
             <Grid item>
-            <Typography variant='h4'>Register</Typography>
+            <Typography variant='h4'>Register Psychologist</Typography>
             </Grid>
             <Grid item>
             <form onSubmit={handleSubmit}>
@@ -43,9 +40,7 @@ const Register = () => {
                 
                 <Button type="submit" variant="contained">Register</Button>
             </Grid>
-            <Grid item>
-                <Button variant="contained" component={Link} to="/login">Already Have an Account</Button>
-            </Grid>
+            
 
             </Grid>
             </form>
@@ -53,8 +48,7 @@ const Register = () => {
             </Grid>
             </Grid>
         </Grid>
-        </Dialog>
     )
 }
 
-export default Register;
+export default RegisterDoc;

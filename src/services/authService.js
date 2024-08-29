@@ -30,7 +30,24 @@ export const signIn = async (email, password) => {
         return user;
     } catch (error) {
         console.log(error);
-        return error;
+        let errorMessage = 'Login failed';
+        switch (error.code) {
+            case 'auth/invalid-email':
+                errorMessage = 'Invalid email address';
+                break;
+            case 'auth/user-disabled':
+                errorMessage = 'User account is disabled';
+                break;
+            case 'auth/user-not-found':
+                errorMessage = 'No user found with this email';
+                break;
+            case 'auth/wrong-password':
+                errorMessage = 'Incorrect password';
+                break;
+            default:
+                errorMessage = 'Login failed. Please try again';
+        }
+        return { success: false, message: errorMessage };
     }
 }
 

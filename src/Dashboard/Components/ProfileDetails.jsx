@@ -10,6 +10,7 @@ import Stack from '@mui/material/Stack';
 
 import WeeklyEmotions from './Charts/WeeklyEmotionScore';
 import EmototionPieChart from './Charts/EmotionPieChart';
+import EmotionLineChart from './Charts/EmotionLineChart';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: '#fff',
@@ -24,7 +25,8 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function FullWidthGrid() {
   return (
-    <Box sx={{ flexGrow: 1, m:2}}>
+
+    <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
         <Grid item xs={6} md={8}>
         <Stack spacing={2} direction="row">
