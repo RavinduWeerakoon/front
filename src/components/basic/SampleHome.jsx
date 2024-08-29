@@ -51,19 +51,19 @@ function SampleHome() {
   };
 
   return (
-    <Container maxWidth="md" >
+    <Container maxWidth="md" sx={{p:2}}>
     <Grid justifyContent="left" alignItems="left" maxWidth="md">
       <CssBaseline />
 
 
-<Typography variant="h3" component="h2" style={{ textAlign: 'left' }}>
+<Typography variant="h3" component="h2" style={{ textAlign: 'left', marginBottom:3 }}>
   Stories
 </Typography>
       
-        <JournalEntry />
-        <JournalEntry />
-        <JournalEntry />
-        <JournalEntry />
+        <JournalEntry date="August 26, 2024" text="Today was a productive day. I completed my tasks on time and..."/>
+        <JournalEntry date="August 27, 2024" text="I’m grateful for the little things today—a warm cup..."/>
+        <JournalEntry date="August 28, 2024" text="Faced a tough situation at work today. It was frustrating, but..."/>
+        <JournalEntry date="August 29, 2024" text="I tried something new today—approached an old problem..."/>
     </Grid>
 
     <Grid container justifyContent="right" alignItems="end"><NewButton/></Grid>

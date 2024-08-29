@@ -21,7 +21,7 @@ function ProfileButton() {
   };
 
   return (
-    <div>
+    <div className='profile-button'>
       <IconButton onClick={handleClick} size="small">
         <Avatar>RW</Avatar>
       </IconButton>
