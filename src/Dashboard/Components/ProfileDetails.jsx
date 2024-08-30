@@ -64,7 +64,7 @@ export default function FullWidthGrid() {
               <Card sx={{ maxWidth: 100+"%" }}>
               <CardContent>
               <Typography gutterBottom variant="h5" component="div">
-                LiMonthly Emotion Distributionzard
+                Monthly Emotion Distribution
               </Typography>
               </CardContent>
               </Card>
