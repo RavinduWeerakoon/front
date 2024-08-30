@@ -43,7 +43,7 @@ export default function EmotionPieChart() {
       slotProps={{
         legend: {
           direction: 'row',
-          position: { vertical: 'bottom', horizontal: 'middle' },
+          position: { vertical: 'bottom', horizontal: 'start' },
           padding: 0,
           margin : 10,
         },
