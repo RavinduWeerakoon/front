@@ -48,7 +48,13 @@ export default function FullWidthGrid() {
         <Card sx={{maxWidth: 40+"%", minWidth:30+"%"}}>
           <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Emotion Score
+
+          Mood Insights
+          </Typography>
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+          This section provides a quick overview of your dominant emotions detected from the past week's journal entries, 
+          helping you reflect on your emotional journey.
+
           </Typography>
           <EmotionScore score={80} />
         </CardContent>
@@ -70,7 +76,7 @@ export default function FullWidthGrid() {
               <Card sx={{ maxWidth: 100+"%" }}>
               <CardContent>
               <Typography gutterBottom variant="h5" component="div">
-                Lizard
+                LiMonthly Emotion Distributionzard
               </Typography>
               </CardContent>
               </Card>
@@ -78,7 +84,7 @@ export default function FullWidthGrid() {
               <Card sx={{ maxWidth: 100+"%" }}>
               <CardContent>
               <Typography gutterBottom variant="h5" component="div">
-                Lizard
+              Emotion Pie Chart
               </Typography>
               </CardContent>
               </Card>
