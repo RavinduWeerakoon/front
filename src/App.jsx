@@ -2,7 +2,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from './components/auth/Login.Jsx'
 import Register from './components/auth/Register.jsx'
-
+import WelcomPage from './Pages/GuestPage.jsx/index.jsx';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
@@ -70,7 +70,7 @@ function App() {
     <BrowserRouter>
        <ThemeProvider theme={lightTheme}>
       <Routes>
-
+        <Route path="/Welcome" element={<WelcomPage />} />
         <Route path="/" element={<JournalEntryPage />} />
         <Route path="/login" element={<Login/>} />
 

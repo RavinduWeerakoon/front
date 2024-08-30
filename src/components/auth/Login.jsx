@@ -87,7 +87,7 @@ const Login = () => {
             <Typography variant="body1" color="primary">Login successful!</Typography>
         </Grid>)
             }
-            <Grid item>
+            <Grid item alignContent={"center"}>
             <Button component={Link} to="/register" variant="contained">Create an Acccount</Button>
 
             </Grid>
