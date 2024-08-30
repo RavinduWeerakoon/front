@@ -13,6 +13,20 @@ import EmototionPieChart from './Charts/EmotionPieChart';
 import EmotionLineChart from './Charts/EmotionLineChart';
 import EmotionScore from './Charts/EmotionScore';
 
+import StatCard from './Charts/StatCard';
+
+const data = 
+  {
+    title: 'Users',
+    value: '14k',
+    interval: 'Last 30 days',
+    trend: 'up',
+    data: [
+      200, 24, 220, 260, 240, 380, 100, 240, 280, 240, 300, 340, 320, 360, 340, 380,
+      360, 400, 380, 420, 400, 640, 340, 460, 440, 480, 460, 600, 880, 920,
+    ],
+  }
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: '#fff',
   ...theme.typography.body2,
@@ -31,7 +45,7 @@ export default function FullWidthGrid() {
       <Grid container spacing={2}>
         <Grid item xs={6} md={8}>
         <Stack spacing={2} direction="row">
-        <Card sx={{maxWidth: 40+"%" }}>
+        <Card sx={{maxWidth: 40+"%", minWidth:30+"%"}}>
           <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             Emotion Score
@@ -40,16 +54,10 @@ export default function FullWidthGrid() {
         </CardContent>
       </Card>
 
-      <Card sx={{ maxWidth: 40+"%"}}>
+      <Card sx={{ maxWidth: 40+"%", minWidth:30+"%"}}>
 
           <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            Lizard
-          </Typography>
-          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
+        <StatCard {...data}/>
         </CardContent>
       </Card>
       </Stack>
