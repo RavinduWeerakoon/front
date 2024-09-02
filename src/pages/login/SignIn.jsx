@@ -18,6 +18,16 @@ import getSignInTheme from '../../theme/getSignInTheme';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
 import SvgIcon from '@mui/material/SvgIcon';
 import EmoSVG from '../../assets/emoai-favicon-color (1).svg';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import {signIn, getUserRole} from "../../services/authService";
+import { loginSuccess, loginFailure } from "../../store/authSlice";
+
+import  Snackbar  from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+
+import { useNavigate } from 'react-router-dom';
+
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -61,6 +71,14 @@ export default function SignIn() {
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
   const [open, setOpen] = React.useState(false);
 
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [success, setSuccess] = React.useState(false);
+  const [error, setError] = React.useState(null);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   // This code only runs on the client side, to determine the system color preference
   React.useEffect(() => {
     // Check if there is a preferred mode in localStorage
@@ -94,14 +112,38 @@ export default function SignIn() {
     setOpen(false);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!email || !password) {
+        alert('Email and password are required');
+        setError('Email and password are required');
+        return;
+    }
+    dispatch({ type: "auth/login/pending" });
+    try {
+        const response = await signIn(email, password);
+        if (response.success === false) {
+            setError(response.message);
+        } else {
+            const user = response;
+            if (user) {
+                const email = user.email;
+                const uid = user.uid;
+                const displayName = user.displayName;
+                const role = await getUserRole(user.uid);
+                dispatch(loginSuccess({ email, uid, displayName, role }));
+                setSuccess(true);
+                setTimeout(() => {
+                    navigate('/dashboard');
+                }, 2000);
+            }
+        }
+    } catch (error) {
+        dispatch(loginFailure(error.message));
+        console.log(error);
+    }
+};
 
   const validateInputs = () => {
     const email = document.getElementById('email');
@@ -160,6 +202,8 @@ export default function SignIn() {
                 <TextField
                   error={emailError}
                   helperText={emailErrorMessage}
+                  value={email} 
+                  onChange={(e) => setEmail(e.target.value)}
                   id="email"
                   type="email"
                   name="email"
@@ -188,6 +232,8 @@ export default function SignIn() {
                 <TextField
                   error={passwordError}
                   helperText={passwordErrorMessage}
+                  value={password} 
+                  onChange={(e) => setPassword(e.target.value)}
                   name="password"
                   placeholder="••••••"
                   type="password"
@@ -226,27 +272,13 @@ export default function SignIn() {
                 </span>
               </Typography>
             </Box>
-            <Divider>or</Divider>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-              <Button
-                type="submit"
-                fullWidth
-                variant="outlined"
-                onClick={() => alert('Sign in with Google')}
-                startIcon={<GoogleIcon />}
-              >
-                Sign in with Google
-              </Button>
-              <Button
-                type="submit"
-                fullWidth
-                variant="outlined"
-                onClick={() => alert('Sign in with Facebook')}
-                startIcon={<FacebookIcon />}
-              >
-                Sign in with Facebook
-              </Button>
-            </Box>
+            
+            <Snackbar open={success} autoHideDuration={2000}>
+                <Alert severity="success" sx={{ width: '100%' }}>
+                    Login successful! Redirecting to home page...
+                </Alert>
+            </Snackbar>
+
           </Card>
         </SignInContainer>
       </ThemeProvider>
