@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -9,6 +9,9 @@ import Alert from '@mui/material/Alert';
 import { db } from '../../../firebaseConfig';
 import { collection, addDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
+
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const emotions = [
   { value: 'joy', label: 'Joy' },
@@ -88,15 +91,7 @@ const JournalEntryPage = () => {
           shrink: true,
         }}
       />
-      <TextField
-        label="Entry"
-        multiline
-        rows={4}
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        fullWidth
-        sx={{ mb: 2 }}
-      />
+      <ReactQuill theme="snow" value={text} onChange={setText} style={{width:100+"%", height:50+"%"}}/>;
       <TextField
         label="Emotion"
         select
