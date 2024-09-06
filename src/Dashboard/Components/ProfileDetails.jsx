@@ -12,7 +12,7 @@ import WeeklyEmotions from './Charts/WeeklyEmotionScore';
 import EmototionPieChart from './Charts/EmotionPieChart';
 import EmotionLineChart from './Charts/EmotionLineChart';
 import EmotionScore from './Charts/EmotionScore';
-
+import StreakIcon from './Charts/StreakIcon';
 import StatCard from './Charts/StatCard';
 
 const data = 
@@ -26,6 +26,7 @@ const data =
       360, 400, 380, 420, 400, 640, 340, 460, 440, 480, 460, 600, 880, 920,
     ],
   }
+
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: '#fff',
@@ -51,11 +52,7 @@ export default function FullWidthGrid() {
 
           Mood Insights
           </Typography>
-          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-          This section provides a quick overview of your dominant emotions detected from the past week's journal entries, 
-          helping you reflect on your emotional journey.
 
-          </Typography>
           <EmotionScore score={80} />
         </CardContent>
       </Card>
@@ -73,15 +70,13 @@ export default function FullWidthGrid() {
         <Grid item xs={6} md={4}>
             <Stack spacing={2}>
               
-              <Card sx={{ maxWidth: 100+"%" }}>
+              <Card sx={{maxWidth: 100+"%", height:50+"%" }}>
               <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                Monthly Emotion Distribution
-              </Typography>
+              <StreakIcon streakCount={20}/>
               </CardContent>
               </Card>
 
-              <Card sx={{ maxWidth: 100+"%" }}>
+              <Card sx={{ maxWidth: 100+"%", height:50+"%" }}>
               <CardContent>
               <Typography gutterBottom variant="h5" component="div">
               Emotion Pie Chart
