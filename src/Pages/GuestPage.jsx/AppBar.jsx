@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 function NavBar() {
   return (
-    <AppBar position="static" sx={{backgroundColor: 'lightblue'}}>
+    <AppBar position="static" sx={{bgcolor: 'rgba(255, 255, 255, 0.2)'}}>
       <Toolbar>
       <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
           <img src={"src/assets/logo-no-background.png"} alt="App Logo" style={{ height: 40, marginRight: 16 }} />
@@ -16,9 +16,9 @@ function NavBar() {
             {/* Optional: You can keep or remove the text */}
           </Typography>
         </Box>
-        <Button component={Link} to="/login" variant="contained" color="inherit">Login</Button>
-        <Button component={Link} to="/register" variant="contained" color="inherit">Register</Button>
-        <Button  color="inherit">Contact</Button>
+        <Button component={Link} to="/login" variant="contained" color='inherit' sx={{color: "black"}} >Login </Button>
+        <Button component={Link} to="/register" variant="contained" color="inherit"  sx={{color: "black"}}>Register</Button>
+        <Button  color="inherit" sx={{color: "black"}}>Contact</Button>
       </Toolbar>
     </AppBar>
   );

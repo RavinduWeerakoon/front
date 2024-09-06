@@ -4,7 +4,7 @@ import { signIn, getUserRole } from "../../services/authService";
 import { Button, TextField, Grid, Typography } from "@mui/material";
 import { loginSuccess, loginFailure } from "../../store/authSlice";
 import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -14,6 +14,7 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
     //const [status, setStatus] = useState("idle");
     const dispatch = useDispatch();
 
@@ -46,6 +47,7 @@ const Login = () => {
                 dispatch(loginSuccess({email,uid, displayName, role }));
                 setSuccess(true);
                 console.log("login success");
+                navigate("/dashboard");
             }
         }
         } catch (error) {

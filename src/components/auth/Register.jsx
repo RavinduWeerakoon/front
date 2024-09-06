@@ -7,6 +7,7 @@ const Register = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
+   
     
 
     const handleSubmit = async (e) => {
@@ -36,6 +37,7 @@ const Register = () => {
             <Grid item>
                 <TextField type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
             </Grid>
+            
             <Grid item>
                 <TextField type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </Grid>

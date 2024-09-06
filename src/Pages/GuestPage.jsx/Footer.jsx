@@ -7,10 +7,10 @@ import Typography from '@mui/material/Typography';
 
 function Footer() {
   return (
-    <Box sx={{ bgcolor: 'primary.main', color: 'white', py: 2, mt: 'auto' }}>
+    <Box sx={{bgcolor: 'rgba(255, 255, 255, 0.2)', color: 'black', py: 2, mt: 'auto'  }}>
       <Container maxWidth="sm">
         <Typography variant="body1" align="center">
-          &copy; {new Date().getFullYear()} My React App. All rights reserved.
+          &copy; {new Date().getFullYear()} EmoAI. All rights reserved.
         </Typography>
       </Container>
     </Box>
