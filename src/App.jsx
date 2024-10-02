@@ -1,11 +1,11 @@
 // import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Login from './components/auth/Login.Jsx'
+import Login from './components/auth/Login.jsx'
 import Register from './components/auth/Register.jsx'
 import WelcomPage from './Pages/GuestPage.jsx/index.jsx';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 // import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
+// import viteLogo from '/vite.svg'fixing error
 import './App.css'
 import Dashboard from 'src/Dashboard/Dashboard'
 import JournalEntryPage from './components/basic/JournalEntryPage.jsx';
