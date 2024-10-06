@@ -27,6 +27,11 @@ import  Snackbar  from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 
 import { useNavigate } from 'react-router-dom';
+import { InputAdornment } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 
 const Card = styled(MuiCard)(({ theme }) => ({
@@ -75,6 +80,7 @@ export default function SignIn() {
   const [password, setPassword] = React.useState("");
   const [success, setSuccess] = React.useState(false);
   const [error, setError] = React.useState(null);
+  const [passwordVisible, setPasswordVisible] = React.useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -110,6 +116,9 @@ export default function SignIn() {
 
   const handleClose = () => {
     setOpen(false);
+  };
+  const handlePasswordVisibility = () => {
+    setPasswordVisible((prev) => !prev);
   };
 
 
@@ -246,7 +255,7 @@ export default function SignIn() {
                   onChange={(e) => setPassword(e.target.value)}
                   name="password"
                   placeholder="••••••"
-                  type="password"
+                  type={ passwordVisible ? "text":"password"}
                   id="password"
                   autoComplete="current-password"
                   autoFocus
@@ -254,6 +263,20 @@ export default function SignIn() {
                   fullWidth
                   variant="outlined"
                   color={passwordError ? 'error' : 'primary'}
+
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handlePasswordVisibility}
+                          edge="end"
+                        >
+                          {passwordVisible ? <Visibility /> : <VisibilityOff />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
                 />
               </FormControl>
               <FormControlLabel
