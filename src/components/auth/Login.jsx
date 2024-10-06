@@ -14,11 +14,19 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(null);
+    const [open, setOpen] = useState(false);
     const navigate = useNavigate();
     //const [status, setStatus] = useState("idle");
     const dispatch = useDispatch();
 
     // const error = useSelector((state) => state.auth.error);
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+   const handleClose = () => {
+        setOpen(false);
+    };
+        
 
     const handleSubmit = async (e) => {
         e.preventDefault();

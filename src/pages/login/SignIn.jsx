@@ -128,6 +128,7 @@ export default function SignIn() {
         } else {
             const user = response;
             if (user) {
+                console.log(user.uid);
                 const email = user.email;
                 const uid = user.uid;
                 const displayName = user.displayName;
@@ -135,7 +136,12 @@ export default function SignIn() {
                 dispatch(loginSuccess({ email, uid, displayName, role }));
                 setSuccess(true);
                 setTimeout(() => {
-                    navigate('/dashboard');
+                  if(role ==='psychologist'){
+
+                    navigate('/dashboard');}
+                  else if(role ==="user"){
+                    navigate('/userdashboard');
+                  }
                 }, 2000);
             }
         }
@@ -176,13 +182,16 @@ export default function SignIn() {
 
       <ThemeProvider theme={showCustomTheme ? SignInTheme : defaultTheme}>
         <CssBaseline enableColorScheme />
-        <SignInContainer direction="column" justifyContent="space-between">
+        <SignInContainer direction="column" justifyContent="center"
+          alignItems="center"
+          sx={{ height: '100vh' }}
+         >
           <Card variant="outlined">
           <SvgIcon sx={{ height: 20, width: 20 }} ><img src={EmoSVG}/></SvgIcon>
             <Typography
               component="h1"
               variant="h4"
-              sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.15rem)' }}
+              sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.15rem)', textAlign: 'center' }}
             >
               Sign in
             </Typography>
@@ -195,6 +204,7 @@ export default function SignIn() {
                 flexDirection: 'column',
                 width: '100%',
                 gap: 2,
+                
               }}
             >
               <FormControl>

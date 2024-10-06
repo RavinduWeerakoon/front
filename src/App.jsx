@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from './components/auth/Login.Jsx'
 import Register from './components/auth/Register.jsx'
 import WelcomPage from './Pages/GuestPage.jsx/index.jsx';
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import './App.css'
@@ -12,6 +12,7 @@ import JournalEntryPage from './components/basic/JournalEntryPage.jsx';
 import SampleHome from './components/basic/sampleHome.jsx';
 import RegisterDoc from './components/auth/RegisterDoc.jsx';
 import SignIn from './pages/login/SignIn.jsx'
+import UserDashboard from './Pages/UserDashboard/index.jsx';
 
 const lightTheme = createTheme({
   palette: {
@@ -71,8 +72,8 @@ function App() {
     <BrowserRouter>
        <ThemeProvider theme={lightTheme}>
       <Routes>
-        <Route path="/Welcome" element={<WelcomPage />} />
-        <Route path="/" element={<JournalEntryPage />} />
+        <Route path="/" element={<WelcomPage />} />
+        <Route path="/JournalEntry" element={<JournalEntryPage />} />
         <Route path="/login" element={<Login/>} />
 
         <Route path="/logout" element={<Logout />} />
@@ -81,6 +82,7 @@ function App() {
         <Route path='/sample' element={<SampleHome/>}/>
         <Route path='/registerdoc' element={<RegisterDoc/>}/>
         <Route path='/signin' element={<SignIn/>}/>
+        <Route path='/userdashboard' element={<UserDashboard/>}/>
 
       </Routes>
       </ThemeProvider>

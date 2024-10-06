@@ -65,7 +65,9 @@ export const getUserRole = async (uid) => {
         const docRef = doc(db, "users", uid);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
+            console.log("Document data in getUserRole:", docSnap.data());
             return docSnap.data().role;
+
         } else {
             return null;
         }

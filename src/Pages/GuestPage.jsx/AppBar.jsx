@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { Link } from 'react-router-dom';
 
+
 function NavBar() {
   return (
     <AppBar position="static" sx={{bgcolor: 'rgba(255, 255, 255, 0.2)'}}>
@@ -16,7 +17,7 @@ function NavBar() {
             {/* Optional: You can keep or remove the text */}
           </Typography>
         </Box>
-        <Button component={Link} to="/login" variant="contained" color='inherit' sx={{color: "black"}} >Login </Button>
+        <Button component={Link} to="/signin" variant="contained" color='inherit' sx={{color: "black"}} >SignIn </Button>
         <Button component={Link} to="/register" variant="contained" color="inherit"  sx={{color: "black"}}>Register</Button>
         <Button  color="inherit" sx={{color: "black"}}>Contact</Button>
       </Toolbar>
