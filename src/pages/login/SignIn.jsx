@@ -296,7 +296,8 @@ export default function SignIn() {
                 Don&apos;t have an account?{' '}
                 <span>
                   <Link
-                    href="/material-ui/getting-started/templates/sign-in/"
+                    component="button"
+                    onClick={() => navigate('/register')}
                     variant="body2"
                     sx={{ alignSelf: 'center' }}
                   >

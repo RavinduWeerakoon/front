@@ -25,7 +25,8 @@ import SampleHome from '../components/basic/sampleHome';
 import Sidebar from './Components/Sidebar';
 import ProfileDetails from './Components/ProfileDetails';
 import JournalEntryPage from '../components/basic/JournalEntryPage';
-import ProfileButton from './Components/ProfileButton';
+import ProfileButton from '../components/ProfileButton';
+
 const drawerWidth = 240;
 
 function ResponsiveDrawer(props) {
@@ -56,7 +57,9 @@ function ResponsiveDrawer(props) {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: 'flex' , backgroundColor:"#EBF5FB" }} >
+    <Box sx={{ display: 'flex' , backgroundColor:"#EBF5FB",
+      
+     }} >
       <CssBaseline />
       <AppBar
       position="fixed"
@@ -68,7 +71,6 @@ function ResponsiveDrawer(props) {
         color: '#333333',
         boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
         flexDirection:"row",
-        
         alignItems: isLargeScreen ? 'center' : 'flex-start',
         justifyContent: isLargeScreen ? 'space-between' : 'space-between',
       }}
@@ -83,9 +85,7 @@ function ResponsiveDrawer(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h3" noWrap component="div">
-            EmoAI
-          </Typography>
+          <img src={"src/assets/logo-no-background.png"} alt="App Logo" style={{ height: 40, marginRight: 16 }} />
         </Toolbar>
 
         <ProfileButton/>

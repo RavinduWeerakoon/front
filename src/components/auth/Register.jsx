@@ -3,22 +3,38 @@ import { signUp } from '../../services/authService';
 import {Button, TextField, Grid, Typography} from "@mui/material";
 import { Link } from "react-router-dom";
 import {Dialog} from "@mui/material";
+import { InputAdornment } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+
 const Register = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
-   
+    const [showPassword, setShowPassword] = useState(false);
+    const [confirmPassword, setConfirmPassword] = useState("");
     
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            if (password !== confirmPassword) {
+                alert("Passwords do not match");
+                return;
+            }
             const user = await signUp(email, password, name, 'user');
             console.log(user);
         } catch (error) {
             console.log(error);
         }
     }
+    const handleShowPassword =()=>{
+        setShowPassword((prev)=>!prev);
+    };
+
+
 
     return (
         <Dialog open={true}>
@@ -39,7 +55,22 @@ const Register = () => {
             </Grid>
             
             <Grid item>
-                <TextField type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <TextField 
+                type={showPassword ? "text" : "password"}
+                placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} 
+                InputProps={{
+                    endAdornment:(
+                        <InputAdornment position="end">
+                            <IconButton onClick={handleShowPassword}
+                            aria-label='toggle password visibility'
+                            edge='end'
+                            >
+                                {showPassword ? <Visibility /> : <VisibilityOff />}
+                            </IconButton>
+                        </InputAdornment>
+                    )
+                }}
+                    />
             </Grid>
             <Grid item>
                 
