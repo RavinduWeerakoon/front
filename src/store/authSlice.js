@@ -20,6 +20,8 @@ const authSlice = createSlice({
             state.displayName = action.payload.displayName;
             state.role = action.payload.role;
             state.error = null;
+
+            
         },
         loginFailure: (state, action) => {
             state.error = action.payload;

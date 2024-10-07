@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Menu from '@mui/material/Menu';
+
 import MenuItem from '@mui/material/MenuItem';
 import  Typography  from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
@@ -8,9 +10,22 @@ import Avatar from '@mui/material/Avatar';
 import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
 
+
 function ProfileButton() {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  const {displayName, email} = useSelector((state) => state.auth);
+    console.log(displayName);
+
+  const generateInitials= (name)=>{
+    console.log(name);
+    if(!name) return "U";
+    const nameParts = name.split(" ");
+    console.log(nameParts);
+    const initials  = nameParts.map((part)=>part[0]).join("");
+    console.log(initials);
+    return initials.toUpperCase();
+    };
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -23,7 +38,7 @@ function ProfileButton() {
   return (
     <div className='profile-button'>
       <IconButton onClick={handleClick} size="small">
-        <Avatar>RW</Avatar>
+        <Avatar>{generateInitials(displayName|| email)}</Avatar>
       </IconButton>
 
       <Menu
