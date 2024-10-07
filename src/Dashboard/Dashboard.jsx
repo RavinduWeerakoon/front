@@ -69,10 +69,25 @@ function ResponsiveDrawer(props) {
         zIndex: (theme) => theme.zIndex.drawer + 1,
         backgroundColor: '#fff',
         color: '#333333',
+        
         boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
         flexDirection:"row",
         alignItems: isLargeScreen ? 'center' : 'flex-start',
         justifyContent: isLargeScreen ? 'space-between' : 'space-between',
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundImage: "url(src/assets/backgroundImageGreenBlue.webp)",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          opacity: 0.3, // Adjust this value for desired opacity
+          zIndex: -1, // Ensure the background stays behind the content
+        },
       }}
     >
         <Toolbar>
