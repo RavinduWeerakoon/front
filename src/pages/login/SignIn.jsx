@@ -20,7 +20,7 @@ import SvgIcon from '@mui/material/SvgIcon';
 import EmoSVG from '../../assets/emoai-favicon-color (1).svg';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {signIn, getUserRole} from "../../services/authService";
+import {signIn, getUser} from "../../services/authService";
 import { loginSuccess, loginFailure } from "../../store/authSlice";
 
 import  Snackbar  from '@mui/material/Snackbar';
@@ -140,8 +140,11 @@ export default function SignIn() {
                 console.log(user.uid);
                 const email = user.email;
                 const uid = user.uid;
-                const displayName = user.displayName;
-                const role = await getUserRole(user.uid);
+               
+                const details = await getUser(user.uid);
+                const role = details.role;
+                const displayName = details.displayName;
+                console.log(displayName);
                 dispatch(loginSuccess({ email, uid, displayName, role }));
                 setSuccess(true);
                 setTimeout(() => {

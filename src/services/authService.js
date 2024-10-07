@@ -60,13 +60,13 @@ export const signOutUser = async () => {
     }
 }
 
-export const getUserRole = async (uid) => {
+export const getUser = async (uid) => {
     try {
         const docRef = doc(db, "users", uid);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
             console.log("Document data in getUserRole:", docSnap.data());
-            return docSnap.data().role;
+            return docSnap.data();
 
         } else {
             return null;
@@ -76,6 +76,7 @@ export const getUserRole = async (uid) => {
         return error;
     }
 }
+
 
 export const signInWithGoogle = async () => {
     try {

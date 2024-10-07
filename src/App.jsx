@@ -1,6 +1,5 @@
 // import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Login from './components/auth/Login.Jsx'
 import Register from './components/auth/Register.jsx'
 import WelcomPage from './Pages/GuestPage.jsx/index.jsx';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -74,8 +73,7 @@ function App() {
       <Routes>
         <Route path="/" element={<WelcomPage />} />
         <Route path="/JournalEntry" element={<JournalEntryPage />} />
-        <Route path="/login" element={<Login/>} />
-
+        
         <Route path="/logout" element={<Logout />} />
         <Route path="/dashboard/*" element={<Dashboard />} />
         <Route path="/register" element={<Register />} />
