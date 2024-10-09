@@ -9,11 +9,18 @@ import Avatar from '@mui/material/Avatar';
 
 import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { useDispatch } from 'react-redux';
+
+import { logout } from '../store/authSlice';
+import { signOutUser } from '../services/authService';
+import { useNavigate } from 'react-router-dom';
 
 
 function ProfileButton() {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {displayName, email} = useSelector((state) => state.auth);
     console.log(displayName);
 
@@ -42,6 +49,20 @@ function ProfileButton() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const handleClickLogout = async () => {
+    try {
+      const response = await signOutUser();  // Await the promise
+      console.log(response);
+      if (response.success) {
+        dispatch(logout());
+        navigate("/");
+        setAnchorEl(null);
+      }
+    } catch (error) {
+      console.error("Sign out failed:", error); // Handle errors
+    }
+  };
+  
 
   return (
     <div className='profile-button'>
@@ -95,7 +116,7 @@ function ProfileButton() {
             Settings
           </Typography>
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleClickLogout}>
           <LogoutIcon fontSize="small" />
           <Typography variant="inherit" 
           
