@@ -21,10 +21,10 @@ import Users from './Components/Users';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-import SampleHome from '../components/basic/sampleHome';
+
 import Sidebar from './Components/Sidebar';
 import ProfileDetails from './Components/ProfileDetails';
-import JournalEntryPage from '../components/basic/JournalEntryPage';
+
 import ProfileButton from '../components/ProfileButton';
 
 const drawerWidth = 240;
@@ -149,8 +149,7 @@ function ResponsiveDrawer(props) {
               <Route path="/" element={<ProfileDetails/>} />
               <Route path="profile" element={<div>About</div>} />
               <Route path="users" element={<Users/>} />
-              <Route path="home" element={<SampleHome/>} />
-              <Route path="new" element={<JournalEntryPage/>} />
+            
             </Routes>
           
       </Box>

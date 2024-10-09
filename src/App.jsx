@@ -80,7 +80,7 @@ function App() {
         <Route path='/sample' element={<SampleHome/>}/>
         <Route path='/registerdoc' element={<RegisterDoc/>}/>
         <Route path='/signin' element={<SignIn/>}/>
-        <Route path='/userdashboard' element={<UserDashboard/>}/>
+        <Route path='/userdashboard/*' element={<UserDashboard/>}/>
 
       </Routes>
       </ThemeProvider>

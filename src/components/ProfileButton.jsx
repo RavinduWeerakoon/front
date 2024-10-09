@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Menu from '@mui/material/Menu';
 
@@ -26,6 +26,14 @@ function ProfileButton() {
     console.log(initials);
     return initials.toUpperCase();
     };
+    // const generateRandomColor = () => {
+    // const letters = '0123456789ABCDEF';
+    // let color = '#';
+    // for (let i = 0; i < 6; i++) {
+    //     color += letters[Math.floor(Math.random() * 16)];
+    // }
+    // return color;
+    // };
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -38,7 +46,10 @@ function ProfileButton() {
   return (
     <div className='profile-button'>
       <IconButton onClick={handleClick} size="small">
-        <Avatar>{generateInitials(displayName|| email)}</Avatar>
+        <Avatar
+        sx={{
+            bgcolor: '#00897B'}}
+        >{generateInitials(displayName|| email)}</Avatar>
       </IconButton>
 
       <Menu
@@ -76,7 +87,7 @@ function ProfileButton() {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem disabled>
-          <Typography variant="subtitle1">John Doe</Typography>
+          <Typography variant="subtitle1">{displayName}</Typography>
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <SettingsIcon fontSize="small" />
@@ -86,7 +97,9 @@ function ProfileButton() {
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <LogoutIcon fontSize="small" />
-          <Typography variant="inherit" style={{ marginLeft: 10 }}>
+          <Typography variant="inherit" 
+          
+          style={{ marginLeft: 10 }}>
             Logout
           </Typography>
         </MenuItem>
