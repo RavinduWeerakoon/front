@@ -9,7 +9,7 @@ import Alert from '@mui/material/Alert';
 import { db } from '../../../firebaseConfig';
 import { collection, addDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
-
+import axios from 'axios';
 const emotions = [
   { value: 'joy', label: 'Joy' },
   { value: 'sadness', label: 'Sadness' },
@@ -22,6 +22,20 @@ const JournalEntryPage = () => {
   const [text, setText] = useState('');
   const [emotion, setEmotion] = useState('');
   const [open, setOpen] = useState(false);
+  const [suicideScore, setSuicideScore] = useState(null);
+  const [emotionData, setEmotionData] = useState(null);
+
+  const fetchEmotionAndScore = async (text) => {
+    try {
+      const response = await axios.post('http://localhost:5000/get-result', {text});
+      const data = response.data;
+      alert(JSON.stringify(data));
+      return data
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -30,11 +44,14 @@ const JournalEntryPage = () => {
 
     if (user) {
       try {
+        const data = await fetchEmotionAndScore(text);
+        await console.log(emotionData)
         await addDoc(collection(db, 'journalEntries'), {
           userId: user.uid,
-          date,
-          text,
-          emotion,
+          date:date,
+          text:text,
+          emotion:data.emotion,
+          suicide_score:data.suicide_score
           
         });
         console.log('Journal entry added successfully');
@@ -97,20 +114,6 @@ const JournalEntryPage = () => {
         fullWidth
         sx={{ mb: 2 }}
       />
-      <TextField
-        label="Emotion"
-        select
-        value={emotion}
-        onChange={(e) => setEmotion(e.target.value)}
-        fullWidth
-        sx={{ mb: 2 }}
-      >
-        {emotions.map((option) => (
-          <MenuItem key={option.value} value={option.value}>
-            {option.label}
-          </MenuItem>
-        ))}
-      </TextField>
       <Button type="submit" variant="contained" color="primary">
         Submit
       </Button>

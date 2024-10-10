@@ -71,7 +71,7 @@ function App() {
     <BrowserRouter>
        <ThemeProvider theme={lightTheme}>
       <Routes>
-        <Route path="/Welcome" element={<WelcomPage />} />
+
         <Route path="/" element={<JournalEntryPage />} />
         <Route path="/login" element={<Login/>} />
 
