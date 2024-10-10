@@ -6,6 +6,7 @@ const RegisterDoc = () => {
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
     
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();

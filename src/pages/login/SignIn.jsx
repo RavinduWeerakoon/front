@@ -20,13 +20,18 @@ import SvgIcon from '@mui/material/SvgIcon';
 import EmoSVG from '../../assets/emoai-favicon-color (1).svg';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {signIn, getUserRole} from "../../services/authService";
+import {signIn, getUser} from "../../services/authService";
 import { loginSuccess, loginFailure } from "../../store/authSlice";
 
 import  Snackbar  from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 
 import { useNavigate } from 'react-router-dom';
+import { InputAdornment } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 
 const Card = styled(MuiCard)(({ theme }) => ({
@@ -75,6 +80,7 @@ export default function SignIn() {
   const [password, setPassword] = React.useState("");
   const [success, setSuccess] = React.useState(false);
   const [error, setError] = React.useState(null);
+  const [passwordVisible, setPasswordVisible] = React.useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -111,6 +117,9 @@ export default function SignIn() {
   const handleClose = () => {
     setOpen(false);
   };
+  const handlePasswordVisibility = () => {
+    setPasswordVisible((prev) => !prev);
+  };
 
 
   const handleSubmit = async (e) => {
@@ -128,14 +137,23 @@ export default function SignIn() {
         } else {
             const user = response;
             if (user) {
+                console.log(user.uid);
                 const email = user.email;
                 const uid = user.uid;
-                const displayName = user.displayName;
-                const role = await getUserRole(user.uid);
+               
+                const details = await getUser(user.uid);
+                const role = details.role;
+                const displayName = details.displayName;
+                console.log(displayName);
                 dispatch(loginSuccess({ email, uid, displayName, role }));
                 setSuccess(true);
                 setTimeout(() => {
-                    navigate('/dashboard');
+                  if(role ==='psychologist'){
+
+                    navigate('/dashboard');}
+                  else if(role ==="user"){
+                    navigate('/userdashboard');
+                  }
                 }, 2000);
             }
         }
@@ -176,13 +194,16 @@ export default function SignIn() {
 
       <ThemeProvider theme={showCustomTheme ? SignInTheme : defaultTheme}>
         <CssBaseline enableColorScheme />
-        <SignInContainer direction="column" justifyContent="space-between">
+        <SignInContainer direction="column" justifyContent="center"
+          alignItems="center"
+          sx={{ height: '100vh' }}
+         >
           <Card variant="outlined">
           <SvgIcon sx={{ height: 20, width: 20 }} ><img src={EmoSVG}/></SvgIcon>
             <Typography
               component="h1"
               variant="h4"
-              sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.15rem)' }}
+              sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.15rem)', textAlign: 'center' }}
             >
               Sign in
             </Typography>
@@ -195,6 +216,7 @@ export default function SignIn() {
                 flexDirection: 'column',
                 width: '100%',
                 gap: 2,
+                
               }}
             >
               <FormControl>
@@ -236,7 +258,7 @@ export default function SignIn() {
                   onChange={(e) => setPassword(e.target.value)}
                   name="password"
                   placeholder="••••••"
-                  type="password"
+                  type={ passwordVisible ? "text":"password"}
                   id="password"
                   autoComplete="current-password"
                   autoFocus
@@ -244,6 +266,20 @@ export default function SignIn() {
                   fullWidth
                   variant="outlined"
                   color={passwordError ? 'error' : 'primary'}
+
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handlePasswordVisibility}
+                          edge="end"
+                        >
+                          {passwordVisible ? <Visibility /> : <VisibilityOff />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
                 />
               </FormControl>
               <FormControlLabel
@@ -263,7 +299,8 @@ export default function SignIn() {
                 Don&apos;t have an account?{' '}
                 <span>
                   <Link
-                    href="/material-ui/getting-started/templates/sign-in/"
+                    component="button"
+                    onClick={() => navigate('/register')}
                     variant="body2"
                     sx={{ alignSelf: 'center' }}
                   >

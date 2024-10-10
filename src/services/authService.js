@@ -55,17 +55,21 @@ export const signOutUser = async () => {
     try {
         await signOut(auth);
         console.log("signout");
+        return { success: true, message: "Signout successful" };
     } catch (error) {
         console.log(error);
+        return { success: false, message: "Signout failed" };
     }
 }
 
-export const getUserRole = async (uid) => {
+export const getUser = async (uid) => {
     try {
         const docRef = doc(db, "users", uid);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-            return docSnap.data().role;
+            console.log("Document data in getUserRole:", docSnap.data());
+            return docSnap.data();
+
         } else {
             return null;
         }
@@ -74,6 +78,7 @@ export const getUserRole = async (uid) => {
         return error;
     }
 }
+
 
 export const signInWithGoogle = async () => {
     try {

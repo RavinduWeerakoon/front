@@ -17,19 +17,18 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import {Routes, Route} from 'react-router-dom'
-import Users from './Components/Users';
+
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-
-import Sidebar from './Components/Sidebar';
-import ProfileDetails from './Components/ProfileDetails';
-
-import ProfileButton from '../components/ProfileButton';
+import SampleHome from '../../components/basic/sampleHome';
+import Sidebar from './Sidebar';
+import JournalEntryPage from '../../components/basic/JournalEntryPage';
+import ProfileButton from '../../components/ProfileButton';
 
 const drawerWidth = 240;
 
-function ResponsiveDrawer(props) {
+function UserDashboard(props) {
   const theme = useTheme();
   const isLargeScreen = useMediaQuery(theme.breakpoints.up('md'));
   const { window } = props;
@@ -146,10 +145,10 @@ function ResponsiveDrawer(props) {
         <Toolbar />
 
             <Routes>
-              <Route path="/" element={<ProfileDetails/>} />
               <Route path="profile" element={<div>About</div>} />
-              <Route path="users" element={<Users/>} />
-            
+
+              <Route path="home" element={<SampleHome/>} />
+              <Route path="new" element={<JournalEntryPage/>} />
             </Routes>
           
       </Box>
@@ -159,4 +158,4 @@ function ResponsiveDrawer(props) {
 
 
 
-export default ResponsiveDrawer;
+export default UserDashboard;

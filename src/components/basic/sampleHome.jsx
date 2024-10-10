@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -7,7 +7,8 @@ import Grid  from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
 import {Link} from 'react-router-dom';
-
+import { getJournals } from '../../services/journalService';
+import { useSelector } from 'react-redux';
 import { useTheme } from '@mui/material/styles';
 
 import JournalEntry from './ListEntry';
@@ -43,13 +44,23 @@ function NewButton() {
 
 function SampleHome() {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [journals,setJournals] = useState([])
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-
+  const {uid} = useSelector((state) => state.auth);
+  console.log(uid)
   const toggleDrawer = () => {
     setDrawerOpen(!drawerOpen);
   };
-
+useEffect(()=> {
+  const fetchJournals =async ()=>{
+    const journalEntries = await getJournals(uid);
+    console.log(journalEntries)
+    setJournals(journalEntries)
+    
+  };
+  fetchJournals();
+},[]);
   return (
     <Container maxWidth="md" sx={{p:2}}>
     <Grid justifyContent="left" alignItems="left" maxWidth="md">
@@ -60,10 +71,9 @@ function SampleHome() {
   Stories
 </Typography>
       
-        <JournalEntry date="August 26, 2024" text="Today was a productive day. I completed my tasks on time and..."/>
-        <JournalEntry date="August 27, 2024" text="I’m grateful for the little things today—a warm cup..."/>
-        <JournalEntry date="August 28, 2024" text="Faced a tough situation at work today. It was frustrating, but..."/>
-        <JournalEntry date="August 29, 2024" text="I tried something new today—approached an old problem..."/>
+       {journals.map((journal) => (
+          <JournalEntry key={journal.id} date={journal.date} text={journal.text} />
+        ))}
     </Grid>
 
     <Grid container justifyContent="right" alignItems="end"><NewButton/></Grid>
