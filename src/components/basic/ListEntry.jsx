@@ -3,6 +3,7 @@ import Container from '@mui/material/Container';
 import Typography  from '@mui/material/Typography';
 import  Grid  from '@mui/material/Grid';
 
+
 function JournalEntry({date, text}) {
   return (
     <Grid
