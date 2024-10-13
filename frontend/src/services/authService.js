@@ -46,8 +46,8 @@ export const signIn = async (email, password) => {
             case 'auth/user-not-found':
                 errorMessage = 'No user found with this email';
                 break;
-            case 'auth/wrong-password':
-                errorMessage = 'Incorrect password';
+            case 'auth/invalid-credential':
+                errorMessage = 'Invalid credentials';
                 break;
             default:
                 errorMessage = 'Login failed. Please try again';

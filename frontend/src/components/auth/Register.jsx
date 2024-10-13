@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 import { signUp } from '../../services/authService';
 import {Button, TextField, Grid, Typography} from "@mui/material";
@@ -23,17 +24,23 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const errors = {};
-        if (!name) errors.name = "Name is required.";
+        if (!name){
+            errors.name = "Name is required.";
+        } 
+        
         if (!email) errors.email = "Email is required.";
         if (!password) errors.password = "Password is required.";
-        if (!confirmPassword) errors.confirmPassword = "Confirm Password is required.";
-        if (password !== confirmPassword) errors.passwordMatch = "Passwords do not match.";
+        if (!confirmPassword) errors.confirmPassword = "confirm your password.";
+        
 
         if (Object.keys(errors).length > 0) {
             setErrorMessages(errors);
             return;
         }
-    
+        if (password !== confirmPassword){
+            setErrorMessage("Passwords do not match");
+            return;
+        }
         try {
             
             const response = await signUp(email, password, name, 'user');
@@ -45,10 +52,12 @@ const Register = () => {
             }
             else{
                 setErrorMessage(response.message);
+                
             }
             ;
         } catch (error) {
             setErrorMessage("Failed to register");
+            setErrorMessages({});
             console.log(error);
         }
     }
@@ -111,7 +120,7 @@ const Register = () => {
             </Grid>
             <Grid item>
                 <TextField type="password" 
-                placeholder="Confirm Password" 
+                placeholder="confirm" 
                 value={confirmPassword} 
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 error = {!! errorMessages.confirmPassword}
@@ -120,11 +129,11 @@ const Register = () => {
             </Grid>
             <Grid item>
                 
-                <Button type="submit" variant="contained">Register</Button>
+                <Button data-testid="register" type="submit" variant="contained" >Register</Button>
             </Grid>
             { errorMessage && (
             <Grid item>
-                <Typography variant="body1" color="error">{errorMessage}</Typography>
+                <Typography  variant="body1" color="error">{errorMessage}</Typography>
             </Grid>
 )}
             <Grid item>

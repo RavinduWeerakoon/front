@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
@@ -16,8 +16,8 @@ import { ThemeProvider, createTheme, styled } from '@mui/material/styles';
 import ForgotPassword from './ForgotPassword';
 import getSignInTheme from '../../theme/getSignInTheme';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
-import SvgIcon from '@mui/material/SvgIcon';
-import EmoSVG from '../../assets/emoai-favicon-color (1).svg';
+// import SvgIcon from '@mui/material/SvgIcon';
+// import EmoSVG from '../../assets/emoai-favicon-color (1).svg';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {signIn, getUser} from "../../services/authService";
@@ -125,7 +125,7 @@ export default function SignIn() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email || !password) {
-        alert('Email and password are required');
+        
         setError('Email and password are required');
         return;
     }
@@ -159,6 +159,7 @@ export default function SignIn() {
         }
     } catch (error) {
         dispatch(loginFailure(error.message));
+        
         console.log(error);
     }
 };
@@ -199,7 +200,7 @@ export default function SignIn() {
           sx={{ height: '100vh' }}
          >
           <Card variant="outlined">
-          <SvgIcon sx={{ height: 20, width: 20 }} ><img src={EmoSVG}/></SvgIcon>
+          {/* <SvgIcon sx={{ height: 20, width: 20 }} ><img src={EmoSVG}/></SvgIcon> */}
             <Typography
               component="h1"
               variant="h4"
@@ -222,6 +223,7 @@ export default function SignIn() {
               <FormControl>
                 <FormLabel htmlFor="email">Email</FormLabel>
                 <TextField
+                  title = "email"
                   error={emailError}
                   helperText={emailErrorMessage}
                   value={email} 
@@ -241,7 +243,7 @@ export default function SignIn() {
               </FormControl>
               <FormControl>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <FormLabel htmlFor="password">Password</FormLabel>
+                  <FormLabel  htmlFor="password">Password</FormLabel>
                   <Link
                     component="button"
                     onClick={handleClickOpen}
@@ -252,6 +254,7 @@ export default function SignIn() {
                   </Link>
                 </Box>
                 <TextField
+                  title='password'
                   error={passwordError}
                   helperText={passwordErrorMessage}
                   value={password} 
@@ -288,6 +291,7 @@ export default function SignIn() {
               />
               <ForgotPassword open={open} handleClose={handleClose} />
               <Button
+                title="signIn"
                 type="submit"
                 fullWidth
                 variant="contained"
@@ -295,6 +299,10 @@ export default function SignIn() {
               >
                 Sign in
               </Button>
+              {error && 
+              <Typography sx={{ color: 'red', textAlign: 'center' }}>
+                {error}
+              </Typography>}
               <Typography sx={{ textAlign: 'center' }}>
                 Don&apos;t have an account?{' '}
                 <span>
