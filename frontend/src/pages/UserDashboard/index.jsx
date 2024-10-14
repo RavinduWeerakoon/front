@@ -26,6 +26,7 @@ import Sidebar from './Sidebar';
 import JournalEntryPage from '../../components/basic/JournalEntryPage';
 import ProfileButton from '../../components/ProfileButton';
 import FullWidthGrid from '../ProfileDetails';
+import UserDetails from './UserDetails';
 
 const drawerWidth = 240;
 
@@ -152,6 +153,7 @@ function UserDashboard(props) {
 
               <Route path="home" element={<SampleHome/>} />
               <Route path="new" element={<JournalEntryPage/>} />
+              <Route path="account" element={<UserDetails/>}/>
               
               <Route path="test" element={<TestComponent userId="ZKyPnZeijGPJKiLYxopseSFNJDo1"/>} />
               <Route path="prof" element={<FullWidthGrid userId="ZKyPnZeijGPJKiLYxopseSFNJDo1"/>} />

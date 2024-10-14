@@ -96,3 +96,23 @@ export const fetchRecords = async (userId) => {
       return error;
     }
   };
+
+
+  export const getPatientDetails = async (userId) => {
+    try {
+      const docRef = collection(db, "users", userId);
+      const doc = await getDocs(docRef);
+      return doc.data();
+    } catch (error) {
+      console.error('Error fetching patient details:', error);
+    }
+  };
+
+  export const updatePatientDetails = async (userId, details) => {
+    try {
+      const docRef = collection(db, "users", userId);
+      await docRef.update(details);
+    } catch (error) {
+      console.error('Error updating patient details:', error);
+    }
+  };

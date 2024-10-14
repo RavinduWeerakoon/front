@@ -12,8 +12,6 @@ import { getAuth } from 'firebase/auth';
 import axios from 'axios';
 
 
-
-import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
 const emotions = [
