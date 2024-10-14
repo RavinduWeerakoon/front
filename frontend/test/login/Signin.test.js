@@ -1,17 +1,17 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor , act} from '@testing-library/react';
 import { MemoryRouter} from 'react-router-dom';
-import SignIn from '../src/Pages/login/SignIn';
+import SignIn from '../../src/Pages/login/SignIn';
 import { useDispatch , useSelector} from 'react-redux';
-import { loginSuccess, loginFailure } from '../src/store/authSlice';
-import {signIn, getUser} from '../src/services/authService';
+import { loginSuccess, loginFailure } from '../../src/store/authSlice';
+import {signIn, getUser} from '../../src/services/authService';
 
-jest.mock('../src/services/authService', () => ({
+jest.mock('../../src/services/authService', () => ({
     signIn: jest.fn(),
     getUser: jest.fn(),
   }));
 
-jest.mock('../src/store/authSlice', () => ({
+jest.mock('../../src/store/authSlice', () => ({
     loginSuccess: jest.fn(),
     loginFailure: jest.fn(),
   }));

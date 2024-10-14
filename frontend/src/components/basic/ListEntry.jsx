@@ -4,6 +4,10 @@ import  Grid  from '@mui/material/Grid';
 
 
 function JournalEntry({date, text}) {
+  console.log(date)
+  const formattedDate = date && date.seconds 
+    ? new Date(date.seconds * 1000).toLocaleDateString() // Converts seconds to milliseconds
+    : 'Unknown date'; // Fallback for unexpected format
   return (
     <Grid
       sx={{ textAlign: 'left', mt: 2 }}
@@ -27,7 +31,7 @@ function JournalEntry({date, text}) {
           fontWeight: 'bold',
         }}
       >
-        {date}
+        {formattedDate}
       </Typography>
       <Typography
         variant="body2"

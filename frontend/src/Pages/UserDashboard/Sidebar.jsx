@@ -1,3 +1,4 @@
+import React from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -17,7 +18,7 @@ const links = [
     {
         name:"Home",
         icon: HomeIcon,
-        path: "home"
+        path: ""
     },
     
    
@@ -28,7 +29,8 @@ const links = [
     }]
 
 
-const Sidebar = (
+const Sidebar = ()=> {
+    return(
 
     <div>
 
@@ -56,9 +58,9 @@ const Sidebar = (
                     return (
                         <ListItem key={index} disablePadding>
 
-                            <ListItemButton component={Link} to={path}>
+                            <ListItemButton  component={Link} to={path}>
                                 <ListItemIcon>
-                                    <Icon />
+                                    <Icon data-testid = {`${name}Icon`} />
                                 </ListItemIcon>
                                 <ListItemText primary={name} />
                             </ListItemButton>
@@ -71,5 +73,6 @@ const Sidebar = (
 
     </div>
 );
+};
 
 export default Sidebar;
