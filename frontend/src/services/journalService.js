@@ -1,6 +1,6 @@
 import { getDocs, query,collection,where} from "firebase/firestore";
 import { db } from "../../firebaseConfig";
-import { displayName } from "react-quill";
+import { Timestamp } from "firebase/firestore";
 
 export const getJournals = async (id) => {
     console.log(id)
@@ -19,6 +19,7 @@ export const getJournals = async (id) => {
                 emotion: doc.data().emotion,
             });
         });
+        console.log(journals)
         return journals;
 
     
