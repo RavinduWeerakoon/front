@@ -14,11 +14,10 @@ import { fetchRecords } from '../services/journalService';
 
 import WeeklyEmotions from '../components/dashboard/WeeklyEmotionScore';
 import EmotionPieChart from '../components/dashboard/EmotionPieChart';
-import EmotionLineChart from '../Dashboard/Components/Charts/EmotionLineChart';
 
 import EmotionScore from '../components/dashboard/EmotionScore';
 
-import StreakIcon from '../Dashboard/Components/Charts/StreakIcon';
+import StreakIcon from '../components/dashboard/StreakIcon';
 import StatCard from "../components/dashboard/StatCard"
 
 
