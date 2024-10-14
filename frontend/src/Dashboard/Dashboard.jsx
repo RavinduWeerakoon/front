@@ -21,11 +21,11 @@ import Users from './Components/Users';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-
 import Sidebar from './Components/Sidebar';
-import ProfileDetails from './Components/ProfileDetails';
+import FullWidthGrid from "../Pages/ProfileDetails"
 
 import ProfileButton from '../components/ProfileButton';
+
 
 const drawerWidth = 240;
 
@@ -146,9 +146,11 @@ function ResponsiveDrawer(props) {
         <Toolbar />
 
             <Routes>
-              <Route path="/" element={<ProfileDetails/>} />
+              <Route path="/" element={<h1>Hello User</h1>} />
               <Route path="profile" element={<div>About</div>} />
               <Route path="users" element={<Users/>} />
+              <Route path="user/:userId" element={<FullWidthGrid/>} />
+                            
             
             </Routes>
           

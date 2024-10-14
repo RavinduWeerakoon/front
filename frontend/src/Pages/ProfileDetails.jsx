@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
+import { useParams } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
@@ -9,24 +10,16 @@ import CardContent from '@mui/material/CardContent';
 import Typography from "@mui/material/Typography";
 import Stack from '@mui/material/Stack';
 
-import WeeklyEmotions from './Charts/WeeklyEmotionScore';
-import EmototionPieChart from './Charts/EmotionPieChart';
-import EmotionLineChart from './Charts/EmotionLineChart';
-import EmotionScore from './Charts/EmotionScore';
-import StreakIcon from './Charts/StreakIcon';
-import StatCard from './Charts/StatCard';
+import { fetchRecords } from '../services/journalService';
 
-const data =
-{
-  title: 'Users',
-  value: '14k',
-  interval: 'Last 30 days',
-  trend: 'up',
-  data: [
-    200, 24, 220, 260, 240, 380, 100, 240, 280, 240, 300, 340, 320, 360, 340, 380,
-    360, 400, 380, 420, 400, 640, 340, 460, 440, 480, 460, 600, 880, 920,
-  ],
-}
+import WeeklyEmotions from '../components/dashboard/WeeklyEmotionScore';
+import EmotionPieChart from '../components/dashboard/EmotionPieChart';
+import EmotionLineChart from '../Dashboard/Components/Charts/EmotionLineChart';
+
+import EmotionScore from '../components/dashboard/EmotionScore';
+
+import StreakIcon from '../Dashboard/Components/Charts/StreakIcon';
+import StatCard from "../components/dashboard/StatCard"
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -42,9 +35,21 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function FullWidthGrid() {
 
+const { userId } = useParams();
+    
+    
+const [records, setRecords] = useState({});
+useEffect(() => {
+    const fetchData = async () => {
+      const records = await fetchRecords(userId);
+      
+      await setRecords(records);
+      
+    };
 
-  const { userId } = useParams();
-  alert(userId)
+    fetchData();
+  }, [userId]);
+
   return (
 
     <Box sx={{ flexGrow: 1, m: 2 }}>
@@ -57,14 +62,14 @@ export default function FullWidthGrid() {
                 This Weeks Score
               </Typography>
 
-              <EmotionScore score={80} />
+              <EmotionScore data={records} />
             </CardContent>
           </Card>
 
         </Grid>
         <Grid item xs={4} md={4}>
 
-              <StatCard {...data} />
+              <StatCard data = {records} />
          
 
 
@@ -100,7 +105,7 @@ export default function FullWidthGrid() {
           <Grid item xs={6} md={8}>
             <Card sx={{ height: 60 + "vh" }}>
               <CardContent sx={{ height: "100%" }}>
-                <WeeklyEmotions />
+                <WeeklyEmotions  data={records}/>
               </CardContent>
             </Card>
 
@@ -109,7 +114,7 @@ export default function FullWidthGrid() {
 
             <Card sx={{ height: 60 + "vh" }}>
               <CardContent sx={{ height: "100%" }}>
-                <EmototionPieChart />
+                <EmotionPieChart previousMonth={records.previousMonth}/>
               </CardContent>
             </Card>
           </Grid>
