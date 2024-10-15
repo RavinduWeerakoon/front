@@ -108,7 +108,7 @@ export default function FullWidthGrid() {
           <Grid item xs={6} md={4}>
 
             <Card sx={{ height: 60 + "vh" }}>
-              <CardContent sx={{ height: "100%" }}>
+              <CardContent sx={{ height: "100%" , justifyContent:'center', alignItems:'center'}}>
                 <EmototionPieChart />
               </CardContent>
             </Card>
