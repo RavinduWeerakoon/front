@@ -1,7 +1,7 @@
 // import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Register from './components/auth/Register.jsx'
-import WelcomPage from './Pages/GuestPage.jsx/index.jsx';
+import WelcomPage from './pages/GuestPage.jsx/index.jsx';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
@@ -11,7 +11,7 @@ import JournalEntryPage from './components/basic/JournalEntryPage.jsx';
 import SampleHome from './components/basic/sampleHome.jsx';
 import RegisterDoc from './components/auth/RegisterDoc.jsx';
 import SignIn from './pages/login/SignIn.jsx'
-import UserDashboard from './Pages/UserDashboard/index.jsx';
+import UserDashboard from './pages/UserDashboard/index.jsx';
 
 const lightTheme = createTheme({
   palette: {

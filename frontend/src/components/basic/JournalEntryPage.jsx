@@ -7,11 +7,11 @@ import MenuItem from '@mui/material/MenuItem';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import { db } from '../../../firebaseConfig';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, Timestamp } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import axios from 'axios';
 
-import ReactQuill from 'react-quill';
+
 import 'react-quill/dist/quill.snow.css';
 
 const emotions = [
@@ -52,11 +52,10 @@ const JournalEntryPage = () => {
         await console.log(emotionData)
         await addDoc(collection(db, 'journalEntries'), {
           userId: user.uid,
-          date:date,
-          text:text,
-          emotion:data.emotion,
-          suicide_score:data.suicide_score
-          
+          date: Timestamp.fromDate(new Date(date)),
+          text: text,
+          emotion: data.emotion,
+          suicide_score: parseFloat(data.suicide_score)
         });
         console.log('Journal entry added successfully');
         // Clear the form

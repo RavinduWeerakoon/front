@@ -12,6 +12,8 @@ import Box from '@mui/material/Box';
 
 import HomeIcon from '@mui/icons-material/Home';
 import AddIcon from '@mui/icons-material/Add';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+
 
 const links = [
     {
@@ -25,6 +27,11 @@ const links = [
         name: 'New',
         icon: AddIcon,
         path: "new"
+    },
+    {
+        name: 'Account Details',
+        icon: ManageAccountsIcon,
+        path: "account"
     }]
 
 
