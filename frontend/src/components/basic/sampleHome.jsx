@@ -45,22 +45,26 @@ function NewButton() {
 function SampleHome() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [journals,setJournals] = useState([])
+  const [error, setError] = useState(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const {uid} = useSelector((state) => state.auth);
   console.log(uid)
-  const toggleDrawer = () => {
-    setDrawerOpen(!drawerOpen);
-  };
+  
 useEffect(()=> {
   const fetchJournals =async ()=>{
+    try{
     const journalEntries = await getJournals(uid);
     console.log(journalEntries)
     setJournals(journalEntries)
+    }
+    catch(error){
+      setError('Error fetching journal entries');
+    }
     
   };
   fetchJournals();
-},[]);
+},[uid]);
   return (
     <Container maxWidth="md" sx={{p:2}}>
     <Grid justifyContent="left" alignItems="left" maxWidth="md">
@@ -71,9 +75,19 @@ useEffect(()=> {
   Stories
 </Typography>
       
-       {journals.map((journal) => (
-          <JournalEntry key={journal.id} date={journal.date} text={journal.text} />
-        ))}
+{error ? (
+          <Typography variant="h6" color="error">
+            {error}
+          </Typography>
+        ) : journals.length === 0 ? (
+          <Typography variant="h6" component="p">
+            No journal entries found
+          </Typography>
+        ) : (
+          journals.map((journal) => (
+            <JournalEntry key={journal.id} date={journal.date} text={journal.text} />
+          ))
+        )}
     </Grid>
 
     <Grid container justifyContent="right" alignItems="end"><NewButton/></Grid>

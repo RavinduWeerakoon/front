@@ -37,7 +37,7 @@ export default function WelcomPage() {
     
      }}>
       <CssBaseline />
-      <NavBar />
+      <NavBar/>
       <Container component="main"
        sx={{mt: 8,
             mb: 2,
