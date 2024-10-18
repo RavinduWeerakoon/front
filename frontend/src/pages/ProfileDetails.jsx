@@ -16,6 +16,7 @@ import WeeklyEmotions from '../components/dashboard/WeeklyEmotionScore';
 import EmotionPieChart from '../components/dashboard/EmotionPieChart';
 
 import EmotionScore from '../components/dashboard/EmotionScore';
+import SuicideScore from '../components/dashboard/SuicideScore';
 
 import StreakIcon from '../components/dashboard/StreakIcon';
 import StatCard from "../components/dashboard/StatCard"
@@ -55,7 +56,7 @@ useEffect(() => {
       <Grid container spacing={2}>
         <Grid item xs={8} md={4}>
           <Card sx={{justifyContent:'center', alignItems:"center", marginLeft:"auto", marginRight:"auto"}}>
-            <CardContent justifyContent="center" allignItems="center" >
+            <CardContent sx={{textAlign:"center"}}>
               <Typography gutterBottom variant="h5" component="div">
 
                 This Weeks Score
@@ -75,25 +76,15 @@ useEffect(() => {
 
         </Grid>
         <Grid item xs={6} md={4}>
-          <Stack spacing={2}>
+        <Card sx={{justifyContent:'center', alignItems:"center", marginLeft:"auto", marginRight:"auto"}}>
+            <CardContent sx={{textAlign:"center"}} >
+              <Typography gutterBottom variant="h5" component="div">
 
-            <Card sx={{ maxWidth: 100 + "%", height: 50 + "%" }}>
-              <CardContent>
-                <StreakIcon streakCount={20} />
-              </CardContent>
-            </Card>
-
-            <Card sx={{ maxWidth: 100 + "%", height: 50 + "%" }}>
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Emotion Pie Chart
-                </Typography>
-              </CardContent>
-            </Card>
-
-
-
-          </Stack>
+                Overall Suicide score
+              </Typography>
+            <SuicideScore data={records} />
+            </CardContent>
+        </Card>
         </Grid>
 
       </Grid>
@@ -113,7 +104,7 @@ useEffect(() => {
 
             <Card sx={{ height: 60 + "vh" }}>
               <CardContent sx={{ height: "100%" }}>
-                <EmotionPieChart previousMonth={records.previousMonth}/>
+                <EmotionPieChart records={records}/>
               </CardContent>
             </Card>
           </Grid>

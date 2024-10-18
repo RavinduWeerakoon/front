@@ -9,7 +9,7 @@ import './App.css'
 import Dashboard from 'src/Dashboard/Dashboard'
 import JournalEntryPage from './components/basic/JournalEntryPage.jsx';
 import SampleHome from './components/basic/sampleHome.jsx';
-import RegisterDoc from './components/auth/RegisterDoc.jsx';
+// import RegisterDoc from './components/auth/RegisterDoc.jsx';
 import SignIn from './pages/login/SignIn.jsx'
 import UserDashboard from './pages/UserDashboard/index.jsx';
 
@@ -78,7 +78,7 @@ function App() {
         <Route path="/dashboard/*" element={<Dashboard />} />
         <Route path="/register" element={<Register />} />
         <Route path='/sample' element={<SampleHome/>}/>
-        <Route path='/registerdoc' element={<RegisterDoc/>}/>
+        {/* <Route path='/registerdoc' element={<RegisterDoc/>}/> */}
         <Route path='/signin' element={<SignIn/>}/>
         <Route path='/userdashboard/*' element={<UserDashboard/>}/>
 

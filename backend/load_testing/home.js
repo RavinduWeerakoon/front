@@ -13,10 +13,10 @@ export default function () {
 
 
   let responses = http.batch([
-    ['GET', 'http://localhost:5173', params],
+    ['GET', 'http://localhost:5000', params],
   ])
 
-  sleep(1);
+  sleep(2);
 
 
 }

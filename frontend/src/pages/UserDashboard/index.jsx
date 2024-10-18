@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -39,20 +39,20 @@ function UserDashboard(props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
 
-  const handleDrawerClose = () => {
-    setIsClosing(true);
-    setMobileOpen(false);
-  };
+  // const handleDrawerClose = () => {
+  //   setIsClosing(true);
+  //   setMobileOpen(false);
+  // };
 
   const handleDrawerTransitionEnd = () => {
     setIsClosing(false);
   };
 
-  const handleDrawerToggle = () => {
-    if (!isClosing) {
-      setMobileOpen(!mobileOpen);
-    }
-  };
+  // const handleDrawerToggle = () => {
+  //   if (!isClosing) {
+  //     setMobileOpen(!mobileOpen);
+  //   }
+  // };
 
 
 
@@ -119,7 +119,7 @@ function UserDashboard(props) {
           variant="temporary"
           open={mobileOpen}
           onTransitionEnd={handleDrawerTransitionEnd}
-          onClose={handleDrawerClose}
+         
           ModalProps={{
             keepMounted: true, // Better open performance on mobile.
           }}
@@ -128,7 +128,7 @@ function UserDashboard(props) {
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
           }}
         >
-          {Sidebar}
+          <Sidebar/>
         </Drawer>
         <Drawer
           variant="permanent"
@@ -138,8 +138,8 @@ function UserDashboard(props) {
           }}
           open
         >
-          {Sidebar}
-        </Drawer>
+        <Sidebar/>       
+         </Drawer>
       </Box>
       <Box
         component="main"
@@ -151,7 +151,7 @@ function UserDashboard(props) {
             <Routes>
               <Route path="profile" element={<div>About</div>} />
 
-              <Route path="home" element={<SampleHome/>} />
+              <Route path="/" element={<SampleHome/>} />
               <Route path="new" element={<JournalEntryPage/>} />
               <Route path="account" element={<UserDetails/>}/>
               

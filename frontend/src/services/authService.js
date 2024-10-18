@@ -14,10 +14,15 @@ export const signUp = async (email, password,displayName, role = 'user') => {
             displayName: displayName,
             role: role
         });
-        return user;
+        return  { success: true, message: "Signup successful", user: user }; 
     } catch (error) {
+        if (error.code === 'auth/email-already-in-use') {
+            // Handle the case where the email is already in use
+            return { success: false, message: "Email already in use" };
+        }
+        
         console.log(error);
-        return error;
+        return  { success: false, message: "Signup failed" };
     }
 }
 
@@ -41,8 +46,8 @@ export const signIn = async (email, password) => {
             case 'auth/user-not-found':
                 errorMessage = 'No user found with this email';
                 break;
-            case 'auth/wrong-password':
-                errorMessage = 'Incorrect password';
+            case 'auth/invalid-credential':
+                errorMessage = 'Invalid credentials';
                 break;
             default:
                 errorMessage = 'Login failed. Please try again';

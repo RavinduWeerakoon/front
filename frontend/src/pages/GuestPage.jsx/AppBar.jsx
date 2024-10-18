@@ -17,7 +17,7 @@ function NavBar() {
             {/* Optional: You can keep or remove the text */}
           </Typography>
         </Box>
-        <Button component={Link} to="/signin" variant="contained" color='inherit' sx={{color: "black"}} >SignIn </Button>
+        <Button  component={Link} to="/signin" variant="contained" color='inherit' sx={{color: "black"}} >SignIn </Button>
         <Button component={Link} to="/register" variant="contained" color="inherit"  sx={{color: "black"}}>Register</Button>
         <Button  color="inherit" sx={{color: "black"}}>Contact</Button>
       </Toolbar>

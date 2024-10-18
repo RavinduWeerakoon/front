@@ -5,6 +5,9 @@ import os
 import time
 from flask_cors import CORS
 import requests as rq
+import sys
+import io
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 
 load_dotenv()
