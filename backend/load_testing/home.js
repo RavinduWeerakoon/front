@@ -13,7 +13,7 @@ export default function () {
 
 
   let responses = http.batch([
-    ['GET', 'https://interpol.api.bund.dev/', params],
+    ['GET', 'http://localhost:5000', params],
   ])
 
   sleep(2);

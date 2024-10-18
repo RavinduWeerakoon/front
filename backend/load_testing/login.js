@@ -7,7 +7,7 @@ export const options = {
 };
 
 export default function () {
-  const url = 'https://google.comm'
+  const url = 'http://localhost:5000/api/login';
   const payload = JSON.stringify({
     username: 'testuser',
     password: 'testpassword',
