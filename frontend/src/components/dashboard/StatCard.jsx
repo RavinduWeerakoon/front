@@ -11,6 +11,23 @@ import { SparkLineChart } from '@mui/x-charts/SparkLineChart';
 import { areaElementClasses } from '@mui/x-charts/LineChart';
 
 
+// Function to calculate the mean suicide score
+const calculateMeanSuicideScore = (currentMonthEntries) => {
+  let suicideScores = [];
+  let dates = [];
+
+  Object.entries(currentMonthEntries).forEach(([date, weekEntries]) => {
+    weekEntries.forEach(entry => {
+      if (entry.suicide_score !== undefined) {
+        suicideScores.push(entry.suicide_score * 100);
+        dates.push(entry.date);
+      }
+    });
+  });
+
+  return { suicideScores, dates };
+};
+
 
 function getDaysInMonth(month, year) {
   const date = new Date(year, month, 0);
@@ -103,10 +120,10 @@ function TrendChart({ title, value, interval, trend, data }) {
               area
               showHighlight
               showTooltip
-              xAxis={{
-                scaleType: 'band',
-                data: daysInWeek, // Use the correct property 'data' for xAxis
-              }}
+              // xAxis={{
+              //   scaleType: 'band',
+              //   data: daysInWeek, // Use the correct property 'data' for xAxis
+              // }}
               sx={{
                 [`& .${areaElementClasses.root}`]: {
                   fill: `url(#area-gradient-${value})`,
@@ -136,18 +153,22 @@ TrendChart.propTypes = {
 
 function StatCard({data}){
 
+
+
+  
+  const { suicideScores, dates } = calculateMeanSuicideScore(data.currentMonth || {});
+  
   const myData =
   {
-    title: 'Users',
-    value: '14k',
-    interval: 'Last 30 days',
-    trend: 'up',
-    data: [
+    title: 'Sucide Score',
+    value: '',
+    interval: '',
+    trend: 'down',
+    data: suicideScores.length ? suicideScores: [
       200, 24, 220, 260, 240, 380, 100, 240, 280, 240, 300, 340, 320, 360, 340, 380,
       360, 400, 380, 420, 400, 640, 340, 460, 440, 480, 460, 600, 880, 920,
     ],
   }
-
 
   return (
     <TrendChart {...myData} />
