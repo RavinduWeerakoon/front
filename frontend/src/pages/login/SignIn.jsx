@@ -100,15 +100,8 @@ export default function SignIn() {
     }
   }, []);
 
-  const toggleColorMode = () => {
-    const newMode = mode === 'dark' ? 'light' : 'dark';
-    setMode(newMode);
-    localStorage.setItem('themeMode', newMode); // Save the selected mode to localStorage
-  };
+ 
 
-  const toggleCustomTheme = () => {
-    setShowCustomTheme((prev) => !prev);
-  };
 
   const handleClickOpen = () => {
     setOpen(true);

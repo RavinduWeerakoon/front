@@ -146,4 +146,97 @@ jest.mock('react-redux', () => ({
      
       });
     });
+
+    
+    
+    test('sets theme mode based on system preference if localStorage is not available', () => {
+      localStorage.removeItem('themeMode');
+      window.matchMedia = jest.fn().mockReturnValue({
+        matches: true, // Simulate system prefers dark
+      });
+      
+      render(
+        <MemoryRouter>
+          <SignIn />
+        </MemoryRouter>
+      );
+      
+      expect(window.matchMedia).toHaveBeenCalledWith('(prefers-color-scheme: dark)');
+      
+    });
+    test('opens Forgot Password modal on clicking the link', () => {
+      render(
+        <MemoryRouter>
+          <SignIn />
+        </MemoryRouter>
+      );
+    
+      // Open modal
+      fireEvent.click(screen.getByText(/forgot your password/i));
+      expect(screen.getByText(/Forgot your password/i)).toBeInTheDocument(); // Modal content
+    });
+    
+    test('closes Forgot Password modal on handleClose', async () => {
+      render(
+        <MemoryRouter>
+          <SignIn />
+        </MemoryRouter>
+      );
+    
+      // Open modal first
+      fireEvent.click(screen.getByText(/forgot your password/i));
+      
+      // Close modal
+      fireEvent.click(screen.getByRole('button', { name: /Cancel/i }));
+      await waitFor(() => expect(screen.queryByText(/Reset password/i)).not.toBeInTheDocument()); // Modal is closed
+    });
+    
+    test('shows error message if email or password is missing', async () => {
+      render(
+        <MemoryRouter>
+          <SignIn />
+        </MemoryRouter>
+      );
+    
+      // Submit without entering email or password
+      fireEvent.click(screen.getByTitle(/signIn/i));
+      
+      expect(screen.getByText('Email and password are required')).toBeInTheDocument();
+    });
+    
+    test('calls signIn and handles success on form submission', async () => {
+      const mockUser = {
+        uid: 'user123',
+        email: 'test@test.com',
+      };
+      
+      signIn.mockResolvedValue(mockUser);
+      getUser.mockResolvedValue({ role: 'user', displayName: 'Test User' });
+    
+      render(
+        <MemoryRouter>
+          <SignIn />
+        </MemoryRouter>
+      );
+    
+      // Fill in email and password
+      fireEvent.change(screen.getByPlaceholderText(/your@email.com/i), {
+        target: { value: 'test@test.com' },
+      });
+      fireEvent.change(screen.getByPlaceholderText(/••••••/i), {
+        target: { value: 'password' },
+      });
+      
+      fireEvent.click(screen.getByTitle(/signIn/i));
+      
+      await waitFor(() => {
+        expect(loginSuccess).toHaveBeenCalledWith({
+          email: 'test@test.com',
+          uid: 'user123',
+          displayName: 'Test User',
+          role: 'user',
+        });
+      });
+    });
+    
   });

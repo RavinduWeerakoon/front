@@ -50,9 +50,7 @@ function SampleHome() {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const {uid} = useSelector((state) => state.auth);
   console.log(uid)
-  const toggleDrawer = () => {
-    setDrawerOpen(!drawerOpen);
-  };
+  
 useEffect(()=> {
   const fetchJournals =async ()=>{
     try{

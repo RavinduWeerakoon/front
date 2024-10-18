@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 .env
 /coverage
+/test/theme/__snapshots__/charts.test.js.snap
