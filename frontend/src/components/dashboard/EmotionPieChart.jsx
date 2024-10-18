@@ -49,6 +49,15 @@ const data = [
   { label: 'Other', value: 5000 },
 ];
 
+const flags = {
+  "joy": "😀️",
+  "fear": "😨️",
+  "surprise": "😲️",
+  "anger": "😡️",
+  "love": "😍️",
+  "sadness": "😢️",
+}
+
 const countries = [
   {
     name: 'joy',
@@ -138,14 +147,38 @@ const colors = [
   'hsl(220, 20%, 42%)',
   'hsl(220, 20%, 35%)',
   'hsl(220, 20%, 25%)',
+  'hsl(220, 20%, 20%)',
+  'hsl(220, 20%, 15%)',
 ];
 
-export default function EmotionPieChart() {
+export default function EmotionPieChart({records}) {
+  // const dt = countEmotions(records.currentMonth);
+
+  const currentMonth = records.currentMonth 
+  const emotionData = extractEmotionData(currentMonth);
+  const pieData = countEmotions(emotionData);
+  const pieChartData = pieData.map(emotion => ({
+    label: emotion.label,
+    value: emotion.value,
+  }));
+
+  
+
+  
+
+  
+
+
+
+  
+  
+  
   return (
     <Card
       variant="outlined"
       sx={{ display: 'flex', flexDirection: 'column', gap: '8px', flexGrow: 1 }}
     >
+      
       <CardContent>
         <Typography component="h2" variant="subtitle2">
           Entires By
@@ -161,7 +194,7 @@ export default function EmotionPieChart() {
             }}
             series={[
               {
-                data,
+                data: pieChartData.length ? pieChartData : data,
                 innerRadius: 75,
                 outerRadius: 100,
                 paddingAngle: 0,
@@ -177,13 +210,13 @@ export default function EmotionPieChart() {
             <PieCenterLabel primaryText="98.5K" secondaryText="Total" />
           </PieChart>
         </Box>
-        {countries.map((country, index) => (
+        {pieChartData.length ? pieChartData.map((emotion, index) => (
           <Stack
             key={index}
             direction="row"
             sx={{ alignItems: 'center', gap: 2, pb: 2 }}
           >
-            {country.flag}
+            {flags[emotion.label]}
             <Stack sx={{ gap: 1, flexGrow: 1 }}>
               <Stack
                 direction="row"
@@ -194,25 +227,25 @@ export default function EmotionPieChart() {
                 }}
               >
                 <Typography variant="body2" sx={{ fontWeight: '500' }}>
-                  {country.name}
+                  {emotion.name}
                 </Typography>
                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                  {country.value}%
+                  {emotion.value}%
                 </Typography>
               </Stack>
               <LinearProgress
                 variant="determinate"
                 aria-label="Number of users by country"
-                value={country.value}
+                value={emotion.value}
                 sx={{
                   [`& .${linearProgressClasses.bar}`]: {
-                    backgroundColor: country.color,
+                    backgroundColor: colors[index],
                   },
                 }}
               />
             </Stack>
           </Stack>
-        ))}
+        )): null}
       </CardContent>
     </Card>
   );

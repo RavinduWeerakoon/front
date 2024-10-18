@@ -41,6 +41,8 @@ const getGaugeColor = (score) => {
 };
 
 return (
+
+  <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
     <Gauge
         {...settings}
         value={score}
@@ -56,5 +58,6 @@ return (
             },
         })}
     />
+  </div>
 );
 }
