@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField';
 import AddIcon from '@mui/icons-material/Add';
 import CheckIcon from '@mui/icons-material/Check';
 import { Typography } from '@mui/material';
+import { useSelector } from 'react-redux'; // For accessing the Redux store
 
 const Users = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -16,7 +17,8 @@ const Users = () => {
   const [newUsername, setNewUsername] = useState('');
   const [isConfirming, setIsConfirming] = useState(false);
   const [Error, setError] = useState('');
-
+  const doctor = useSelector((state) => state.auth.displayName); // Access the doctor object from the Redux store
+  console.log(doctor);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -43,7 +45,7 @@ const Users = () => {
   const handleAddNewUser = async () => {
     setIsConfirming(true);
     try {
-      const response = await addNewUser(newUsername); // Service file should handle the logic of adding the user
+      const response = await addNewUser(newUsername, doctor); // Service file should handle the logic of adding the user
       if (!response.success) {
         console.error('Error adding new user:', response.message);
         setError(response.message);

@@ -1,4 +1,4 @@
-import { getDocs, query,collection,where} from "firebase/firestore";
+import { getDocs, query,collection,where ,doc, updateDoc, arrayUnion} from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 import { Timestamp } from "firebase/firestore";
 
@@ -79,10 +79,10 @@ export const fetchRecords = async (userId) => {
   };
 
 
-  export const getUsernamesAndIds = async () => {
+  export const getUsernamesAndIds = async (selfName) => {
     try {
       const ref = collection(db, "users");
-      const q = query(ref, where("role", "==", "user"));
+      const q = query(ref, where("role", "==", "user"), where("doctor", "==", selfName));
       const querySnapshot = await getDocs(q);
       const users = [];
       querySnapshot.forEach(doc => {
@@ -119,7 +119,7 @@ export const fetchRecords = async (userId) => {
     }
   };
 
-  export const addNewUser = async (username) => {
+  export const addNewUser = async (username, doctorName) => {
     try {
       // Query Firestore to check if a user with the provided username and role "user" exists
       const usersRef = collection(db, "users");
@@ -130,14 +130,34 @@ export const fetchRecords = async (userId) => {
       if (!querySnapshot.empty) {
         // If a user is found, return the user data
         const user = querySnapshot.docs[0].data();
-        const response ={
+        const userData ={
           success:true,
           userId: querySnapshot.docs[0].id, // Assuming Firestore doc ID is the userId
           displayName: user.displayName,
           role: user.role
 
         }
-        return response;
+        try{
+        const userRef = doc(db, "users", userData.userId);
+        await updateDoc(userRef, {
+        doctor: doctorName ,// Add doctor's name to the user document
+        notifications: arrayUnion({
+          message: `You have been added by ${doctorName}`,
+          timestamp: Timestamp.now(),
+          seen: false
+        })
+
+      });
+        return userData;}
+        catch (error) {
+          console.error("Error updating user:", error);
+          const response = {
+            success: false,
+            message: "Error updating user"
+            
+          }
+          return response;
+        }
       } else {
 
         // No user found, handle the case here
