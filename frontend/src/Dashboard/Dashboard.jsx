@@ -107,7 +107,7 @@ function ResponsiveDrawer(props) {
       gap: '16px', // Space between notification and profile button
     }}
   >
-    <NotificationIcon onClick={toggleDrawer(true)} />
+    <NotificationIcon onClick={toggleDrawer(true)} sx={{ fontSize: '60px' }}  />
     <NotificationPane isOpen={isNotificationPaneOpen} toggleDrawer={toggleDrawer} />
     <ProfileButton />
   </Box>

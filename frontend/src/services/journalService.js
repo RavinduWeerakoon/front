@@ -142,7 +142,7 @@ export const fetchRecords = async (userId) => {
         await updateDoc(userRef, {
         doctor: doctorName ,// Add doctor's name to the user document
         notifications: arrayUnion({
-          message: `You have been added by ${doctorName}`,
+          message: `You have been added by Dr.${doctorName}`,
           timestamp: Timestamp.now(),
           seen: false
         })

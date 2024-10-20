@@ -28,7 +28,9 @@ const NotificationIcon = ({onClick}) => {
     return (
         <IconButton color='inherit' onClick={onClick}>
         <Badge badgeContent={unseenCount} color="error">
-        <NotificationsIcon />
+        <NotificationsIcon 
+        sx={{ fontSize: 30 }}
+         />
         </Badge>
         </IconButton>
     );
