@@ -24,7 +24,12 @@ const Users = () => {
     const fetchUsers = async () => {
       try {
         const usersData = await getUsernamesAndIds();
-        setUsers(usersData);
+        if (Array.isArray(usersData)) {
+          setUsers(usersData); // Ensure usersData is an array before setting it
+        } else {
+          setUsers([]); // Fallback to an empty array if usersData is not valid
+        }
+      
       } catch (error) {
         console.error('Error fetching users:', error);
       }
@@ -68,9 +73,9 @@ const Users = () => {
     }
   };
 
-  const filteredUsers = users.filter((user) =>
-    user.displayName.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredUsers = (!users || users.length === 0)
+    ? []
+    : users.filter((user) => user.displayName.toLowerCase().includes(searchQuery.toLowerCase())); 
 
   const columns = [
     {
@@ -95,7 +100,7 @@ const Users = () => {
       />
       <div style={{ height: 400, width: '100%' , marginBottom: '60px'}}>
         <DataGrid
-          rows={filteredUsers}
+          rows={(filteredUsers.length === 0) ? users : filteredUsers}
           columns={columns}
           pageSize={5}
           getRowId={(row) => row.userId}

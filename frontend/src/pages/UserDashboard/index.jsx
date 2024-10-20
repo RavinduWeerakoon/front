@@ -27,6 +27,8 @@ import JournalEntryPage from '../../components/basic/JournalEntryPage';
 import ProfileButton from '../../components/ProfileButton';
 import FullWidthGrid from '../ProfileDetails';
 import UserDetails from './UserDetails';
+import NotificationIcon from '../../components/NotificationIcon';
+import NotificationPane from '../../components/NotificationPane';
 
 const drawerWidth = 240;
 
@@ -38,6 +40,11 @@ function UserDashboard(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
+  const [isNotificationPaneOpen, setNotificationPaneOpen] = React.useState(false);
+
+  const toggleDrawer = (open) => () => {
+    setNotificationPaneOpen(open);
+  };
 
   // const handleDrawerClose = () => {
   //   setIsClosing(true);
@@ -106,7 +113,18 @@ function UserDashboard(props) {
           <img src={"src/assets/logo-no-background.png"} alt="App Logo" style={{ height: 40, marginRight: 16 }} />
         </Toolbar>
 
-        <ProfileButton/>
+        <Box
+    sx={{
+      display: 'flex',
+      alignItems: 'center',
+      marginLeft: 'auto', // Pushes this Box to the right
+      gap: '16px', // Space between notification and profile button
+    }}
+  >
+    <NotificationIcon onClick={toggleDrawer(true)} />
+    <NotificationPane isOpen={isNotificationPaneOpen} toggleDrawer={toggleDrawer} />
+    <ProfileButton />
+  </Box>
       </AppBar>
       <Box
         component="nav"
