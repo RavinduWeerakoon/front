@@ -81,7 +81,8 @@ export const fetchRecords = async (userId) => {
 
   export const getUsernamesAndIds = async () => {
     try {
-      const q = collection(db, "users");
+      const ref = collection(db, "users");
+      const q = query(ref, where("role", "==", "user"));
       const querySnapshot = await getDocs(q);
       const users = [];
       querySnapshot.forEach(doc => {
@@ -115,5 +116,45 @@ export const fetchRecords = async (userId) => {
       await docRef.update(details);
     } catch (error) {
       console.error('Error updating patient details:', error);
+    }
+  };
+
+  export const addNewUser = async (username) => {
+    try {
+      // Query Firestore to check if a user with the provided username and role "user" exists
+      const usersRef = collection(db, "users");
+      const q = query(usersRef, where("displayName", "==", username), where("role", "==", "user"));
+      
+      const querySnapshot = await getDocs(q);
+      
+      if (!querySnapshot.empty) {
+        // If a user is found, return the user data
+        const user = querySnapshot.docs[0].data();
+        const response ={
+          success:true,
+          userId: querySnapshot.docs[0].id, // Assuming Firestore doc ID is the userId
+          displayName: user.displayName,
+          role: user.role
+
+        }
+        return response;
+      } else {
+
+        // No user found, handle the case here
+        const response ={
+          success:false,
+          message: "User not found Try Again."
+        }
+        return response;
+      }
+    } catch (error) {
+      console.error("Error finding or adding user:", error);
+      const response ={
+        success:false,
+        message: "Error finding or adding user"
+      }
+      return response;
+      
+
     }
   };
