@@ -13,8 +13,9 @@ import { useTheme } from '@mui/material/styles';
 
 import Sidebar from './Components/Sidebar';
 import FullWidthGrid from "../pages/ProfileDetails.jsx"
-
 import ProfileButton from '../components/ProfileButton';
+import NotificationIcon from '../components/NotificationIcon.jsx';
+import NotificationPane from '../components/NotificationPane.jsx';
 
 
 const drawerWidth = 240;
@@ -25,7 +26,11 @@ function ResponsiveDrawer(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
+  const [isNotificationPaneOpen, setNotificationPaneOpen] = React.useState(false);
 
+  const toggleDrawer = (open) => () => {
+    setNotificationPaneOpen(open);
+  };
   const handleDrawerClose = () => {
     setIsClosing(true);
     setMobileOpen(false);
@@ -92,9 +97,20 @@ function ResponsiveDrawer(props) {
             <MenuIcon />
           </IconButton>
           <img src={"src/assets/logo-no-background.png"} alt="App Logo" style={{ height: 40, marginRight: 16 }} />
+          
         </Toolbar>
-
-        <ProfileButton />
+        <Box
+    sx={{
+      display: 'flex',
+      alignItems: 'center',
+      marginLeft: 'auto', // Pushes this Box to the right
+      gap: '16px', // Space between notification and profile button
+    }}
+  >
+    <NotificationIcon onClick={toggleDrawer(true)} sx={{ fontSize: '60px' }}  />
+    <NotificationPane isOpen={isNotificationPaneOpen} toggleDrawer={toggleDrawer} />
+    <ProfileButton />
+  </Box>
       </AppBar>
       <Box
         component="nav"
