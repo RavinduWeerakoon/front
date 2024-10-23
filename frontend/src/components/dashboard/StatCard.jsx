@@ -91,8 +91,8 @@ function TrendChart({ title, value, interval, trend, data }) {
 
   return (
     <Card variant="outlined" sx={{ height: '100%', flexGrow: 1 }}>
-      <CardContent>
-        <Typography component="h2" variant="subtitle2" gutterBottom>
+      <CardContent sx={{textAlign:"center"}}>
+        <Typography component="div" variant='h5'>
           {title}
         </Typography>
         <Stack

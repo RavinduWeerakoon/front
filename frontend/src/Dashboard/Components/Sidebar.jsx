@@ -32,7 +32,7 @@ const links = [
 
 const Sidebar = (
 
-    <div>
+    <div style={{minWidth:20+"%"}}>
 
 
 

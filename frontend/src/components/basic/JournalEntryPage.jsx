@@ -31,7 +31,7 @@ const JournalEntryPage = () => {
 
   const fetchEmotionAndScore = async (text) => {
     try {
-      const response = await axios.post('http://localhost:5000/get-result', {text});
+      const response = await axios.post('https://emoai-b0cvdga3fpddaede.centralindia-01.azurewebsites.net/get-result', {text});
       const data = response.data;
       alert(JSON.stringify(data));
       return data

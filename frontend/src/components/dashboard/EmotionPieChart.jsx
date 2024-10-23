@@ -180,9 +180,7 @@ export default function EmotionPieChart({records}) {
     >
       
       <CardContent>
-        <Typography component="h2" variant="subtitle2">
-          Entires By
-        </Typography>
+        <Typography variant="h5">Monthly Distribution</Typography>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <PieChart
             colors={colors}

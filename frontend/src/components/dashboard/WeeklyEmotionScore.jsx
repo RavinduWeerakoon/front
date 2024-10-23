@@ -34,7 +34,7 @@ console.log(data)
 
   return (
     <>
-      <Typography variant="h3">Weekly Score</Typography>
+      <Typography variant="h5">Weekly Score</Typography>
       <BarChart
         series={[
           { data: currentMonthScores, label: 'This month', id: 'currentMonthId' },
