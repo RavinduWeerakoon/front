@@ -1,4 +1,4 @@
-import { getDocs, query,collection,where} from "firebase/firestore";
+import { getDocs, query,collection,where ,doc, updateDoc, arrayUnion} from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 import { Timestamp } from "firebase/firestore";
 
@@ -79,9 +79,10 @@ export const fetchRecords = async (userId) => {
   };
 
 
-  export const getUsernamesAndIds = async () => {
+  export const getUsernamesAndIds = async (selfName) => {
     try {
-      const q = collection(db, "users");
+      const ref = collection(db, "users");
+      const q = query(ref, where("role", "==", "user"), where("doctor", "==", selfName));
       const querySnapshot = await getDocs(q);
       const users = [];
       querySnapshot.forEach(doc => {
@@ -115,5 +116,65 @@ export const fetchRecords = async (userId) => {
       await docRef.update(details);
     } catch (error) {
       console.error('Error updating patient details:', error);
+    }
+  };
+
+  export const addNewUser = async (username, doctorName) => {
+    try {
+      // Query Firestore to check if a user with the provided username and role "user" exists
+      const usersRef = collection(db, "users");
+      const q = query(usersRef, where("displayName", "==", username), where("role", "==", "user"));
+      
+      const querySnapshot = await getDocs(q);
+      
+      if (!querySnapshot.empty) {
+        // If a user is found, return the user data
+        const user = querySnapshot.docs[0].data();
+        const userData ={
+          success:true,
+          userId: querySnapshot.docs[0].id, // Assuming Firestore doc ID is the userId
+          displayName: user.displayName,
+          role: user.role
+
+        }
+        try{
+        const userRef = doc(db, "users", userData.userId);
+        await updateDoc(userRef, {
+        doctor: doctorName ,// Add doctor's name to the user document
+        notifications: arrayUnion({
+          message: `You have been added by Dr.${doctorName}`,
+          timestamp: Timestamp.now(),
+          seen: false
+        })
+
+      });
+        return userData;}
+        catch (error) {
+          console.error("Error updating user:", error);
+          const response = {
+            success: false,
+            message: "Error updating user"
+            
+          }
+          return response;
+        }
+      } else {
+
+        // No user found, handle the case here
+        const response ={
+          success:false,
+          message: "User not found Try Again."
+        }
+        return response;
+      }
+    } catch (error) {
+      console.error("Error finding or adding user:", error);
+      const response ={
+        success:false,
+        message: "Error finding or adding user"
+      }
+      return response;
+      
+
     }
   };
