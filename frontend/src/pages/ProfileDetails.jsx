@@ -69,6 +69,7 @@ useEffect(() => {
         </Grid>
         <Grid item xs={4} md={4}>
 
+              
               <StatCard data = {records} />
          
 
