@@ -10,7 +10,7 @@ import {Link} from 'react-router-dom';
 import { getJournals } from '../../services/journalService';
 import { useSelector } from 'react-redux';
 import { useTheme } from '@mui/material/styles';
-
+import JournalModal from './JournalModal';
 import JournalEntry from './ListEntry';
 
 
@@ -47,6 +47,8 @@ function SampleHome() {
   const [journals,setJournals] = useState([])
   const [error, setError] = useState(null);
   const theme = useTheme();
+  const [selectedJournal, setSelectedJournal] = useState(null); // For modal
+  const [open, setOpen] = useState(false); // Add this state to manage modal visibility
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const {uid} = useSelector((state) => state.auth);
   console.log(uid)
@@ -56,7 +58,7 @@ useEffect(()=> {
     try{
     const journalEntries = await getJournals(uid);
     console.log(journalEntries)
-    setJournals(journalEntries)
+    setJournals(journalEntries);
     }
     catch(error){
       setError('Error fetching journal entries');
@@ -65,33 +67,52 @@ useEffect(()=> {
   };
   fetchJournals();
 },[uid]);
+const handleOpen = (journal) => {
+  setSelectedJournal(journal); // Set the clicked journal
+  setOpen(true); // Open the modal
+};
+const handleClose = () => setOpen(false); // Close modal
   return (
-    <Container maxWidth="md" sx={{p:2}}>
-    <Grid justifyContent="left" alignItems="left" maxWidth="md">
-      <CssBaseline />
+    <Container maxWidth="md" sx={{ p: 2 }}>
+  <Grid justifyContent="left" alignItems="left" maxWidth="md">
+    <CssBaseline />
+    
+    <Typography variant="h3" component="h2" style={{ textAlign: 'left', marginBottom: 3 }}>
+      Stories
+    </Typography>
 
+    {error ? (
+      <Typography variant="h6" color="error">
+        {error}
+      </Typography>
+    ) : journals.length === 0 ? (
+      <Typography variant="h6" component="p">
+        No journal entries found
+      </Typography>
+    ) : (
+      <Grid container spacing={2}>
+          {journals.map((journal, index) => (
+            <Grid item xs={12} key={index}>
+              <JournalEntry
+                date={journal.date}
+                text={journal.text}
+                onReadMore={() => handleOpen(journal)} // Pass journal to modal
+              />
+            </Grid>
+          ))}
+        </Grid>
+    )}
+  </Grid>
+  {/* Modal for showing full journal entry */}
+  {selectedJournal && (
+        <JournalModal open={open} handleClose={handleClose} journal={selectedJournal} />
+      )}
 
-<Typography variant="h3" component="h2" style={{ textAlign: 'left', marginBottom:3 }}>
-  Stories
-</Typography>
-      
-{error ? (
-          <Typography variant="h6" color="error">
-            {error}
-          </Typography>
-        ) : journals.length === 0 ? (
-          <Typography variant="h6" component="p">
-            No journal entries found
-          </Typography>
-        ) : (
-          journals.map((journal) => (
-            <JournalEntry key={journal.id} date={journal.date} text={journal.text} />
-          ))
-        )}
-    </Grid>
-
-    <Grid container justifyContent="right" alignItems="end"><NewButton/></Grid>
+  <Grid container justifyContent="right" alignItems="end">
+    <NewButton />
+  </Grid>
 </Container>
+
 
   );
 }
