@@ -23,7 +23,7 @@ const Users = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const usersData = await getUsernamesAndIds();
+        const usersData = await getUsernamesAndIds(doctor);
         if (Array.isArray(usersData)) {
           setUsers(usersData); // Ensure usersData is an array before setting it
         } else {

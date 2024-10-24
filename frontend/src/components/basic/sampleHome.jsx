@@ -8,6 +8,7 @@ import { getJournals } from '../../services/journalService';
 import { useSelector } from 'react-redux';
 import { useTheme } from '@mui/material/styles';
 import FormDialog from './FormDialog';
+import JournalModal from './JournalModal';
 import JournalEntry from './ListEntry';
 
 
@@ -24,6 +25,8 @@ function SampleHome() {
   const [journals,setJournals] = useState([])
   const [error, setError] = useState(null);
   const theme = useTheme();
+  const [selectedJournal, setSelectedJournal] = useState(null); // For modal
+  const [open, setOpen] = useState(false); // Add this state to manage modal visibility
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const {uid} = useSelector((state) => state.auth);
   
@@ -40,6 +43,11 @@ useEffect(()=> {
   };
   fetchJournals();
 },[uid]);
+const handleOpen = (journal) => {
+  setSelectedJournal(journal); // Set the clicked journal
+  setOpen(true); // Open the modal
+};
+const handleClose = () => setOpen(false); // Close modal
   return (
     <Container maxWidth="md" sx={{p:2}}>
     <Grid justifyContent="left" alignItems="left" maxWidth="md">
@@ -68,6 +76,7 @@ useEffect(()=> {
     </Grid>
 
 </Container>
+
 
   );
 }
