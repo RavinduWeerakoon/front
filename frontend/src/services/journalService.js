@@ -19,8 +19,11 @@ export const getJournals = async (id) => {
                 emotion: doc.data().emotion,
             });
         });
-        console.log(journals)
-        return journals;
+        const sortedJournals = journals.sort((a, b) => {
+          return b.date.toDate() - a.date.toDate();
+      });
+        console.log(sortedJournals)
+        return sortedJournals;
 
     
         
