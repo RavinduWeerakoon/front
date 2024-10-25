@@ -23,7 +23,7 @@ export default function FormDialog() {
   const [emotionData, setEmotionData] = useState(null);
   const [text, setText] = useState('');
   const [date, setDate] = useState('');
-
+  const [emotionAlertOpen, setEmotionAlertOpen] = useState(false);
 
 
 
@@ -31,7 +31,8 @@ export default function FormDialog() {
     try {
       const response = await axios.post('https://emoai-b0cvdga3fpddaede.centralindia-01.azurewebsites.net/get-result', {text});
       const data = response.data;
-      alert(JSON.stringify(data));
+      setEmotionData(data);
+      setEmotionAlertOpen(true);
       return data
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -85,6 +86,17 @@ export default function FormDialog() {
 
   const handleClose = () => {
     setOpen(false);
+  };
+  const getEmoji = (emotion) => {
+    const emojiMap = {
+      joy: '😊',
+      sadness: '😢',
+      anger: '😠',
+      surprised: '😲',
+      love: '❤️',
+      fear: '😨'
+    };
+    return emojiMap[emotion] || '';
   };
 
   return (
@@ -152,10 +164,17 @@ export default function FormDialog() {
 
       <Snackbar open={alt} autoHideDuration={6000} onClose={handleAlertClose}>
         <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-          Emotion added successfully!
+          Emotion added successfully!<br />
+          Emotion : {emotionData ? emotionData.emotion : 'No emotion detected'}{getEmoji(emotionData ? emotionData.emotion : '')}
         </Alert>
       </Snackbar>
-
+      {/* {emotionData && (
+        <Snackbar open={emotionAlertOpen} autoHideDuration={6000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity="info" sx={{ width: '100%' }}>
+            Detected Emotion: {emotionData.emotion}
+          </Alert>
+        </Snackbar>
+      )} */}
     </React.Fragment>
     
   );

@@ -70,7 +70,7 @@ const handleClose = () => setOpen(false); // Close modal
           </Typography>
         ) : (
           journals.map((journal) => (
-            <JournalEntry key={journal.id} date={journal.date} text={journal.text} />
+            <JournalEntry key={journal.id} date={journal.date} text={journal.text} emotion = {journal.emotion} />
           ))
         )}
     </Grid>
