@@ -9,6 +9,65 @@ import AddIcon from '@mui/icons-material/Add';
 import CheckIcon from '@mui/icons-material/Check';
 import { Typography } from '@mui/material';
 import { useSelector } from 'react-redux'; // For accessing the Redux store
+import LinearProgress from '@mui/material/LinearProgress';
+import CircularProgress from '@mui/material/CircularProgress';
+
+function CircularProgressWithLabel({val}) {
+  return (
+    <Box sx={{ position: 'relative', display: 'inline-flex' }}>
+      <CircularProgress variant="determinate" value={val} />
+      <Box
+        sx={{
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+          position: 'absolute',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Typography
+          variant="caption"
+          component="div"
+          sx={{ color: 'text.secondary' }}
+        >
+          {`${Math.round(val)}%`}
+        </Typography>
+      </Box>
+    </Box>
+  );
+}
+
+
+function SuicideScore({val}) {
+  return (
+    <Box sx={{ position: 'relative', display: 'inline-flex' }}>
+      <CircularProgress variant="determinate" value={val}/>
+      <Box
+        sx={{
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+          position: 'absolute',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Typography
+          variant="caption"
+          component="div"
+          sx={{ color: 'text.secondary' }}
+        >
+          {`${Math.round(val)}%`}
+        </Typography>
+      </Box>
+    </Box>
+  );
+}
 
 const Users = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -88,6 +147,38 @@ const Users = () => {
         </Link>
       ),
     },
+
+    {
+      field: 'emotionScore',
+      headerName: 'Emotion Score',
+      width: 150,
+      renderCell: (params) => {
+        const randomScore = Math.floor(Math.random() * 50+50);
+        return <CircularProgressWithLabel val={randomScore} />;
+      },
+    },
+    {
+      field: 'suicide_Score',
+      headerName: 'Suicide Score',
+      width: 150,
+      renderCell: (params) => {
+        const randomScore = Math.floor(Math.random() * 50);
+        return <SuicideScore val={randomScore} />;
+      }
+
+    },
+    {
+      field: 'Contant',
+      headerName: 'Contact No',
+      width: 150,
+      renderCell: (params) => {
+        let lst = ["0778673456", "0567452343", "0785643453", "078654634"]
+        const randomIndex = Math.floor(Math.random() * lst.length);
+          return (
+            <p>{lst[randomIndex]}</p>
+          )
+      },
+    }
   ];
 
   return (
