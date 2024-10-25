@@ -153,7 +153,7 @@ function ResponsiveDrawer(props) {
         <Toolbar />
 
         <Routes>
-          <Route path="/" element={<h1>Hello User</h1>} />
+          <Route path="/" element={<Users/>} />
           <Route path="profile" element={<div>About</div>} />
           <Route path="users" element={<Users />} />
           <Route path="user/:userId" element={<FullWidthGrid />} />
