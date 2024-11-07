@@ -50,12 +50,12 @@ const data = [
 ];
 
 const flags = {
-  "joy": "😀️",
-  "fear": "😨️",
-  "surprise": "😲️",
-  "anger": "😡️",
-  "love": "😍️",
-  "sadness": "😢️",
+  "joy": "😀️ joy",
+  "fear": "😨️ fear",
+  "surprise": "😲️ surprise",
+  "anger": "😡️ anger",
+  "love": "😍️ love",
+  "sadness": "😢️ sadness",
 }
 
 const countries = [

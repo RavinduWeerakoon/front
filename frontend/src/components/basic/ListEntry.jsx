@@ -23,7 +23,7 @@ function JournalEntry({ date, text, onReadMore, emotion }) {
   return (
     <Grid
       sx={{
-        textAlign: 'left',
+        textAlign: 'left', 
         mt: 2,
         cursor: 'pointer',
         backgroundColor: '#E3EEF3', // Initial background color

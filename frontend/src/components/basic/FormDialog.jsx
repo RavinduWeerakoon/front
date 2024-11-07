@@ -144,7 +144,7 @@ export default function FormDialog() {
           required
           autoFocus
           id="outlined-multiline-flexible"
-          label="Multiline"
+          label="what's on your mind?"
           onChange={(e) => setText(e.target.value)}
           multiline
           maxRows={4}
@@ -157,8 +157,20 @@ export default function FormDialog() {
         />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button type="submit" onClick={handleSubmit}>Add</Button>
+          {/* <Button onClick={handleClose}>Cancel</Button>
+          <Button type="submit" onClick={handleSubmit}>Add</Button> */}
+
+          <Button
+          onClick={handleClose}
+          sx={{ mt: 2, backgroundColor: '#FF7A7A', color: 'white', '&:hover': { backgroundColor: '#EF7A7A' } }}
+          variant="contained"
+          >Cancel</Button>
+          <Button
+          type='submit'
+          onClick={handleSubmit}
+          sx={{ mt: 2, backgroundColor: '#007B8F', color: 'white', '&:hover': { backgroundColor: '#00677A' } }}
+          variant="contained"
+          >Add</Button>
         </DialogActions>
       </Dialog>
 
