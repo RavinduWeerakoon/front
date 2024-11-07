@@ -36,8 +36,8 @@ export const getJournals = async (id) => {
 
 export const fetchRecords = async (userId) => {
     const now = new Date();
-    const startOfCurrentMonth = new Date(now.getFullYear(), now.getMonth(), 1);
-    const startOfPreviousMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+    const startOfCurrentMonth = new Date(now.getFullYear(), now.getMonth()-1, 1);
+    const startOfPreviousMonth = new Date(now.getFullYear(), now.getMonth() -2, 1);
     console.log(startOfPreviousMonth)
     const endOfPreviousMonth = new Date(now.getFullYear(), now.getMonth(), 0);
 

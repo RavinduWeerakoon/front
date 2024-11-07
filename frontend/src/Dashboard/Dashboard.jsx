@@ -9,8 +9,7 @@ import Toolbar from '@mui/material/Toolbar';
 import { Routes, Route } from 'react-router-dom'
 import Users from './Components/Users';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
-
+import { useTheme } from '@mui/material/styles'
 import Sidebar from './Components/Sidebar';
 import FullWidthGrid from "../pages/ProfileDetails.jsx"
 import ProfileButton from '../components/ProfileButton';
