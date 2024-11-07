@@ -2,14 +2,24 @@ import React from 'react';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 
-function JournalEntry({ date, text, onReadMore }) {
+function JournalEntry({ date, text, onReadMore, emotion }) {
   const formattedDate = date && date.seconds
     ? new Date(date.seconds * 1000).toLocaleDateString() // Converts seconds to milliseconds
     : 'Unknown date'; // Fallback for unexpected format
 
   // Trim the text for preview
   const trimmedText = text.length > 50 ? `${text.substring(0, 50)}...` : text;
-
+  const getEmoji = (emotion) => {
+    const emojiMap = {
+      joy: '😊',
+      sadness: '😢',
+      anger: '😠',
+      surprised: '😲',
+      love: '❤️',
+      fear: '😨'
+    };
+    return emojiMap[emotion] || '';
+  };
   return (
     <Grid
       sx={{
@@ -49,6 +59,16 @@ function JournalEntry({ date, text, onReadMore }) {
         }}
       >
         {trimmedText}
+      </Typography>
+      <Typography
+        variant="body2"
+        component="p"
+        style={{
+          color: '#007B8F', // Emotion color
+          marginTop: '8px',
+        }}
+      >
+        {getEmoji(emotion)} {emotion}
       </Typography>
     </Grid>
   );
