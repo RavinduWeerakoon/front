@@ -43,6 +43,8 @@ useEffect(()=> {
   };
   fetchJournals();
 },[uid]);
+
+
 const handleOpen = (journal) => {
   setSelectedJournal(journal); // Set the clicked journal
   setOpen(true); // Open the modal
@@ -70,10 +72,14 @@ const handleClose = () => setOpen(false); // Close modal
           </Typography>
         ) : (
           journals.map((journal) => (
-            <JournalEntry key={journal.id} date={journal.date} text={journal.text} emotion = {journal.emotion} />
+            <JournalEntry key={journal.id} date={journal.date} text={journal.text} emotion = {journal.emotion} onReadMore={() => handleOpen(journal)}/>
           ))
         )}
     </Grid>
+
+    {selectedJournal && (
+        <JournalModal open={open} handleClose={handleClose} journal={selectedJournal} />
+      )}
 
 </Container>
 
