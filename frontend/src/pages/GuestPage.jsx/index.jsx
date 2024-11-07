@@ -27,7 +27,7 @@ export default function WelcomPage() {
         left: 0,
         width: '100%',
         height: '100%',
-        backgroundImage: "url(src/assets/backgroundImageGreenBlue.webp)",
+        backgroundImage: "url(backgroundImageGreenBlue.webp)",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -49,7 +49,7 @@ export default function WelcomPage() {
           <Grid container spacing={12
           } sx={{ mt: 4 }}>
             <Grid item xs={12} md={6}>
-              <Box component="img" src={"src/assets/logo-no-background.png"} alt="Our Team" sx={{ width: '100%', borderRadius: 2 }} />
+              <Box component="img" src={"logo-no-background.png"} alt="Our Team" sx={{ width: '100%', borderRadius: 2 }} />
             </Grid>
             <Grid item xs={12} md={6} sx={{ display: 'flex', alignItems: 'center' }}>
               <Box>
