@@ -91,7 +91,7 @@ function UserDashboard(props) {
           left: 0,
           width: '100%',
           height: '100%',
-          backgroundImage: "url(src/assets/backgroundImageGreenBlue.webp)",
+          backgroundImage: "url(./backgroundImageGreenBlue.webp)",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -110,7 +110,7 @@ function UserDashboard(props) {
           >
             <MenuIcon />
           </IconButton>
-          <img src={"src/assets/logo-no-background.png"} alt="App Logo" style={{ height: 40, marginRight: 16 }} />
+          <img src={"./logo-no-background.png"} alt="App Logo" style={{ height: 40, marginRight: 16 }} />
         </Toolbar>
 
         <Box

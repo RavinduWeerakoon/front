@@ -19,8 +19,7 @@ import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
 // import SvgIcon from '@mui/material/SvgIcon';
 // import EmoSVG from '../../assets/emoai-favicon-color (1).svg';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import {signIn, getUser} from "../../services/authService";
+import { useDispatch } from 'react-redux';import {signIn, getUser} from "../../services/authService";
 import { loginSuccess, loginFailure } from "../../store/authSlice";
 
 import  Snackbar  from '@mui/material/Snackbar';
@@ -59,7 +58,7 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
   // backgroundImage:
   //   'radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))',
   // backgroundRepeat: 'no-repeat',
-  backgroundImage: "url(src/assets/backgroundImageGreenBlue.webp)",
+  backgroundImage: "url(backgroundImageGreenBlue.webp)",
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   backgroundRepeat: 'no-repeat',  
